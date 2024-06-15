@@ -30,16 +30,22 @@ class AuthService implements AuthServiceInterface{
   }
 
   @override
-  Future<ResponseModel> login({String? phone, String? password, required bool isCustomerVerificationOn}) async {
-    Response response = await authRepositoryInterface.login(phone: phone, password: password);
+  Future<ResponseModel> login({String? cpf, String? password, required bool isCustomerVerificationOn}) async {
+    
+    Response response = await authRepositoryInterface.login(cpf: cpf, password: password);
+    
     ResponseModel responseModel;
-    if (response.statusCode == 200) {
-      if(isCustomerVerificationOn && response.body['is_phone_verified'] == 0) {
 
-      }else {
+    if (response.statusCode == 200) {
+
+      /*if(isCustomerVerificationOn && response.body['is_phone_verified'] == 0) {
+
+      }*/else {
+
         authRepositoryInterface.saveUserToken(response.body['token']);
         await authRepositoryInterface.updateToken();
         authRepositoryInterface.clearSharedPrefGuestId();
+      
       }
       responseModel = ResponseModel(true, '${response.body['is_phone_verified']}${response.body['token']}', isPhoneVerified: response.body['is_phone_verified'] == 1);
     } else {

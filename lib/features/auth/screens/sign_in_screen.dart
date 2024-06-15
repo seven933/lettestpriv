@@ -141,21 +141,21 @@ class SignInScreenState extends State<SignInScreen> {
                             CustomTextField(
                               titleText: 'enter_your_cpf'.tr,
                               hintText: '',
-                              controller: _phoneController,
+                              controller: _cpfController,
                               focusNode: _phoneFocus,
                               nextFocus: _passwordFocus,
-                              inputType: TextInputType.phone,
-                              isPhone: true,
-                              showTitle: ResponsiveHelper.isDesktop(context),
-                              onCountryChanged: (CountryCode countryCode) {
+                              inputType: TextInputType.number,
+                              isPhone: false,
+                              //showTitle: ResponsiveHelper.isDesktop(context),
+                              /*onCountryChanged: (CountryCode countryCode) {
                                 _countryDialCode = countryCode.dialCode;
-                              },
-                              countryDialCode: _countryDialCode ?? Get.find<LocalizationController>().locale.countryCode,
+                              },*/
+                              //countryDialCode: _countryDialCode ?? Get.find<LocalizationController>().locale.countryCode,
                             ),
                             const SizedBox(height: Dimensions.paddingSizeExtraLarge),
                             
                             // - Campo do número de telefone
-                            CustomTextField(
+                            /*CustomTextField(
                               titleText: 'enter_phone_number'.tr,
                               hintText: '',
                               controller: _cpfController,
@@ -170,9 +170,9 @@ class SignInScreenState extends State<SignInScreen> {
                               countryDialCode: _countryDialCode ?? Get.find<LocalizationController>().locale.countryCode,
                             ),
                             const SizedBox(height: Dimensions.paddingSizeExtraLarge),
-
+                            */
                             CustomTextField(
-                              titleText: ResponsiveHelper.isDesktop(context) ? 'password'.tr : 'enter_your_password'.tr,
+                              titleText: 'enter_your_password'.tr,
                               hintText: 'enter_your_password'.tr,
                               controller: _passwordController,
                               focusNode: _passwordFocus,
@@ -180,8 +180,8 @@ class SignInScreenState extends State<SignInScreen> {
                               inputType: TextInputType.visiblePassword,
                               prefixIcon: Icons.lock,
                               isPassword: true,
-                              showTitle: ResponsiveHelper.isDesktop(context),
-                              onSubmit: (text) => (GetPlatform.isWeb) ? _login(authController, _countryDialCode!) : null,
+                              //showTitle: ResponsiveHelper.isDesktop(context),
+                              onSubmit: null,//(text) => (GetPlatform.isWeb) ? _login(authController, _countryDialCode!) : null,
                             ),
                             const SizedBox(height: Dimensions.paddingSizeSmall),
 
@@ -221,7 +221,7 @@ class SignInScreenState extends State<SignInScreen> {
                               height: ResponsiveHelper.isDesktop(context) ? 45 : null,
                               width:  ResponsiveHelper.isDesktop(context) ? 180 : null,
                               buttonText: ResponsiveHelper.isDesktop(context) ? 'login'.tr : 'sign_in'.tr,
-                              onPressed: () => _login(authController, _countryDialCode!),
+                              onPressed: () => _login(authController, /*_countryDialCode!*/),
                               isLoading: authController.isLoading,
                               radius: ResponsiveHelper.isDesktop(context) ? Dimensions.radiusSmall : Dimensions.radiusDefault,
                               isBold: !ResponsiveHelper.isDesktop(context),
@@ -285,17 +285,18 @@ class SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  void _login(AuthController authController, String countryDialCode) async {
-    String phone = _phoneController.text.trim();
+  void _login(AuthController authController, /*String countryDialCode*/) async {
+    //String phone = _phoneController.text.trim();
+    String cpf = _cpfController.text.trim();
     String password = _passwordController.text.trim();
-    String numberWithCountryCode = countryDialCode+phone;
-    PhoneValid phoneValid = await CustomValidator.isPhoneValid(numberWithCountryCode);
-    numberWithCountryCode = phoneValid.phone;
+    //String numberWithCountryCode = countryDialCode+phone;
+    //PhoneValid phoneValid = await CustomValidator.isPhoneValid(numberWithCountryCode);
+    //numberWithCountryCode = phoneValid.phone;
 
-    if (phone.isEmpty) {
-      showCustomSnackBar('enter_phone_number'.tr);
-    }else if (!phoneValid.isValid) {
-      showCustomSnackBar('invalid_phone_number'.tr);
+    if (cpf.isEmpty) {
+      showCustomSnackBar('enter_your_cpf'.tr);
+    //}else if (!phoneValid.isValid) {
+      //showCustomSnackBar('invalid_phone_number'.tr);
     }else if (password.isEmpty) {
       showCustomSnackBar('enter_password'.tr);
     }else if (password.length < 6) {

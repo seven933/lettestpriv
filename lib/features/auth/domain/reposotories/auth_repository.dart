@@ -37,10 +37,10 @@ class AuthRepository implements AuthRepositoryInterface{
   }
 
   @override
-  Future<Response> login({String? phone, String? password}) async {
+  Future<Response> login({String? cpf, String? password}) async {
     String guestId = getSharedPrefGuestId();
     Map<String, String> data = {
-      "phone": phone!,
+      "cpf": cpf!,
       "password": password!,
     };
     if(guestId.isNotEmpty) {
