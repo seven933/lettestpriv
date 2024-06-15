@@ -44,7 +44,7 @@ class FoodHomeScreen extends StatelessWidget {
 
       // - Barra com módulos
       CustomInkWell(
-          //onTap: () => splashController.switchModule(0, true),
+          onTap: null,//() => splashController.switchModule(0, true),
           radius: 30.0, 
           child: GetBuilder<SplashController>(builder: (splashController) {
             return Column(
