@@ -306,7 +306,7 @@ class SignInScreenState extends State<SignInScreen> {
         if (status.isSuccess) {
           Get.find<CartController>().getCartDataOnline();
           if (authController.isActiveRememberMe) {
-            authController.saveUserNumberAndPasswordSharedPref(phone, password, countryDialCode);
+            //authController.saveUserNumberAndPasswordSharedPref(phone, password, countryDialCode);
           } else {
             authController.clearUserNumberAndPassword();
           }
@@ -314,7 +314,7 @@ class SignInScreenState extends State<SignInScreen> {
           if(Get.find<SplashController>().configModel!.customerVerification! && int.parse(status.message![0]) == 0) {
             List<int> encoded = utf8.encode(password);
             String data = base64Encode(encoded);
-            Get.toNamed(RouteHelper.getVerificationRoute(numberWithCountryCode, token, RouteHelper.signUp, data));
+            //Get.toNamed(RouteHelper.getVerificationRoute(numberWithCountryCode, token, RouteHelper.signUp, data));
           }else {
 
             if(widget.backFromThis) {
