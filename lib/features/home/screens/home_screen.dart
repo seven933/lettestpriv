@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bool isGrocery = splashController.module != null && splashController.module!.moduleType.toString() == AppConstants.grocery;
 
       return Scaffold(
-        appBar: ResponsiveHelper.isDesktop(context) ? const WebMenuBar() : null,
+        appBar: null,
         endDrawer: const MenuDrawer(), endDrawerEnableOpenDragGesture: false,
         backgroundColor: Theme.of(context).colorScheme.background,
         body: isParcel ? const ParcelCategoryScreen() : SafeArea(
@@ -136,11 +136,14 @@ class _HomeScreenState extends State<HomeScreen> {
             onRefresh: () async {
               splashController.setRefreshing(true);
               if(Get.find<SplashController>().module != null) {
+
                 await Get.find<LocationController>().syncZoneData();
                 await Get.find<BannerController>().getBannerList(true);
+
                 if(isGrocery) {
                   await Get.find<FlashSaleController>().getFlashSale(true, true);
                 }
+
                 await Get.find<BannerController>().getPromotionalBannerList(true);
                 await Get.find<ItemController>().getDiscountedItemList(true, false, 'all');
                 await Get.find<CategoryController>().getCategoryList(true);
@@ -164,19 +167,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   await Get.find<FlashSaleController>().getFlashSale(true, true);
                   Get.find<ItemController>().getFeaturedCategoriesItemList(true, true);
                 }
+
               }else {
+
                 await Get.find<BannerController>().getFeaturedBanner();
                 await Get.find<SplashController>().getModules();
+
                 if(AuthHelper.isLoggedIn()) {
                   await Get.find<AddressController>().getAddressList();
                 }
+                
                 await Get.find<StoreController>().getFeaturedStoreList();
               }
               splashController.setRefreshing(false);
             },
-            child: ResponsiveHelper.isDesktop(context) ? WebNewHomeScreen(
-              scrollController: _scrollController,
-            ) : CustomScrollView(
+            child: CustomScrollView(
               controller: _scrollController,
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [

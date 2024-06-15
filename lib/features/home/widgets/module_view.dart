@@ -49,27 +49,38 @@ class ModuleView extends StatelessWidget {
             ),
             child: CustomInkWell(
               onTap: () => splashController.switchModule(index, true),
-              radius: Dimensions.radiusDefault,
-              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                  child: CustomImage(
-                    image: '${splashController.configModel!.baseUrls!.moduleImageUrl}/${splashController.moduleList![index].icon}',
-                    height: 50, width: 50,
+              radius: 30.0, 
+              child: Container(
+                width: 60.0, 
+                height: 60.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0), 
+                ),
+                child: ClipOval(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomImage(
+                        image: '${splashController.configModel!.baseUrls!.moduleImageUrl}/${splashController.moduleList![index].icon}',
+                        height: 50,
+                        width: 50,
+                      ),
+                      const SizedBox(height: Dimensions.paddingSizeSmall),
+                      Center(
+                        child: Text(
+                          splashController.moduleList![index].moduleName!,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: Dimensions.paddingSizeSmall),
-
-                Center(child: Text(
-                  splashController.moduleList![index].moduleName!,
-                  textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis,
-                  style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
-                )),
-
-              ]),
+              ),
             ),
-          );
+          ),
         },
       ) : Center(child: Padding(
         padding: const EdgeInsets.only(top: Dimensions.paddingSizeSmall), child: Text('no_module_found'.tr),

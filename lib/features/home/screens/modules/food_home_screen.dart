@@ -39,6 +39,48 @@ class FoodHomeScreen extends StatelessWidget {
         ),
       ),
 
+      // - Barra com módulos
+      CustomInkWell(
+          onTap: () => splashController.switchModule(index, true),
+          radius: 30.0, 
+          child: GetBuilder<NotificationController>(builder: (notificationController) {
+            return Column(
+              children: [
+                Container(
+                  width: 60.0, 
+                  height: 60.0,
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0), 
+                ),
+                child: ClipOval(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                      CustomImage(
+                          image: '${splashController.configModel!.baseUrls!.moduleImageUrl}/${splashController.moduleList![index].icon}',
+                          height: 50,
+                          width: 50,
+                      ),
+                      const SizedBox(height: Dimensions.paddingSizeSmall),
+                      Center(
+                        child: Text(
+                          splashController.moduleList![index].moduleName!,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                        ),
+                      ),
+                    ],
+                  ),
+              ),
+              ),
+              ]
+            );
+        }), 
+          
+      ),
+
       const CategoryView(),
       isLoggedIn ? const VisitAgainView(fromFood: true) : const SizedBox(),
       const SpecialOfferView(isFood: true, isShop: false),
