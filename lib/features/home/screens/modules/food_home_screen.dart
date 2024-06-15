@@ -12,6 +12,7 @@ import 'package:sixam_mart/features/home/widgets/views/new_on_mart_view.dart';
 import 'package:sixam_mart/features/home/widgets/views/special_offer_view.dart';
 import 'package:sixam_mart/features/home/widgets/views/visit_again_view.dart';
 import 'package:sixam_mart/features/home/widgets/banner_view.dart';
+import 'package:sixam_mart/features/splash/controllers/splash_controller.dart';
 
 class FoodHomeScreen extends StatelessWidget {
   const FoodHomeScreen({super.key});
@@ -41,9 +42,9 @@ class FoodHomeScreen extends StatelessWidget {
 
       // - Barra com módulos
       CustomInkWell(
-          onTap: () => splashController.switchModule(index, true),
+          //onTap: () => splashController.switchModule(0, true),
           radius: 30.0, 
-          child: GetBuilder<NotificationController>(builder: (notificationController) {
+          child: GetBuilder<SplashController>(builder: (splashController) {
             return Column(
               children: [
                 Container(
@@ -57,7 +58,7 @@ class FoodHomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                       CustomImage(
-                          image: '${splashController.configModel!.baseUrls!.moduleImageUrl}/${splashController.moduleList![index].icon}',
+                          image: '${splashController.configModel!.baseUrls!.moduleImageUrl}/${splashController.moduleList![0].icon}',
                           height: 50,
                           width: 50,
                       ),
