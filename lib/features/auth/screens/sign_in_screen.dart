@@ -302,7 +302,7 @@ class SignInScreenState extends State<SignInScreen> {
     }else if (password.length < 6) {
       showCustomSnackBar('password_should_be'.tr);
     }else {
-      authController.login(numberWithCountryCode, password).then((status) async {
+      authController.login(/*numberWithCountryCode*/ cpf, password).then((status) async {
         if (status.isSuccess) {
           Get.find<CartController>().getCartDataOnline();
           if (authController.isActiveRememberMe) {
