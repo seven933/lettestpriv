@@ -40,13 +40,13 @@ class AuthService implements AuthServiceInterface{
 
       /*if(isCustomerVerificationOn && response.body['is_phone_verified'] == 0) {
 
-      }*/else {
+      }else {*/
 
         authRepositoryInterface.saveUserToken(response.body['token']);
         await authRepositoryInterface.updateToken();
         authRepositoryInterface.clearSharedPrefGuestId();
       
-      }
+      //} 
       responseModel = ResponseModel(true, '${response.body['is_phone_verified']}${response.body['token']}', isPhoneVerified: response.body['is_phone_verified'] == 1);
     } else {
       responseModel = ResponseModel(false, response.statusText, isPhoneVerified: response.body['is_phone_verified'] == 1);
