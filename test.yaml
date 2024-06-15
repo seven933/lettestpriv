@@ -1,0 +1,29 @@
+workflows:
+  flutter-workflow:
+    name: Flutter CI
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch_patterns:
+        - pattern: main
+    environment:
+      vars:
+        FLUTTER_VERSION: 3.19.6
+    scripts:
+      - name: Checkout repository
+        script: |
+          git clone $CM_REPOSITORY_URL .
+          git checkout $CM_BRANCH
+      - name: Setup Flutter
+        script: |
+          git clone https://github.com/flutter/flutter.git -b $FLUTTER_VERSION
+          export PATH="$PATH:`pwd`/flutter/bin"
+      - name: Install dependencies
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --release --no-shrink
+      - name: Upload build artifacts
+        script: |
+          mkdir -p /tmp/artifacts
+          cp build/app/outputs/flutter-apk/app-release.apk /tmp/artifacts/
