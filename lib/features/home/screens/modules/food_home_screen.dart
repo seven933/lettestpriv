@@ -16,6 +16,7 @@ import 'package:sixam_mart/features/splash/controllers/splash_controller.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/common/widgets/custom_ink_well.dart';
 import 'package:sixam_mart/common/widgets/custom_image.dart';
+import 'package:get/get.dart';
 
 class FoodHomeScreen extends StatelessWidget {
   const FoodHomeScreen({super.key});
@@ -68,7 +69,7 @@ class FoodHomeScreen extends StatelessWidget {
                       const SizedBox(height: Dimensions.paddingSizeSmall),
                       Center(
                         child: Text(
-                          splashController.moduleList![index].moduleName!,
+                          splashController.moduleList![0].moduleName!,
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
