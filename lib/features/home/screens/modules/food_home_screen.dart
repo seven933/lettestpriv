@@ -46,46 +46,52 @@ class FoodHomeScreen extends StatelessWidget {
       ),
 
       // - Barra com módulos
-      CustomInkWell(
-          onTap: null,//() => splashController.switchModule(0, true),
-          radius: 30.0, 
-          child: GetBuilder<SplashController>(builder: (splashController) {
-            return Column(
-              children: [
-                Container(
-                  width: 60.0, 
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0), 
-                ),
-                child: ClipOval(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                      CustomImage(
-                          image: '${splashController.configModel!.baseUrls!.moduleImageUrl}/${splashController.moduleList![0].icon}',
-                          height: 50,
-                          width: 50,
-                      ),
-                      const SizedBox(height: Dimensions.paddingSizeSmall),
-                      Center(
-                        child: Text(
-                          splashController.moduleList![0].moduleName!,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
-                        ),
-                      ),
-                    ],
+      Column(
+        children: [
+          Text('other_modules'.tr),
+          CustomInkWell(
+            onTap: null,//() => splashController.switchModule(0, true),
+            radius: 30.0, 
+            child: GetBuilder<SplashController>(builder: (splashController) {
+              return Column(
+                children: [
+                  Container(
+                    width: 60.0, 
+                    height: 60.0,
+                    decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0), 
                   ),
-              ),
-              ),
-              ]
-            );
-        }), 
-          
+                  child: ClipOval(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                        CustomImage(
+                            image: '${splashController.configModel!.baseUrls!.moduleImageUrl}/${splashController.moduleList![0].icon}',
+                            height: 50,
+                            width: 50,
+                        ),
+                        const SizedBox(height: Dimensions.paddingSizeSmall),
+                        Center(
+                          child: Text(
+                            splashController.moduleList![0].moduleName!,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                          ),
+                        ),
+                      ],
+                    ),
+                ),
+                ),
+                ]
+              );
+          }), 
+            
+        ),
+        ],
       ),
+      
 
       const CategoryView(),
       isLoggedIn ? const VisitAgainView(fromFood: true) : const SizedBox(),

@@ -68,7 +68,7 @@ class ModuleView extends StatelessWidget {
                       const SizedBox(height: Dimensions.paddingSizeSmall),
                       Center(
                         child: Text(
-                          splashController.moduleList![index].moduleName!,
+                          'Tamanho: ${splashController.moduleList!.lenght} ${splashController.moduleList![index].moduleName!}',
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
