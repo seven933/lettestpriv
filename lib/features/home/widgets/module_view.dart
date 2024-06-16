@@ -80,7 +80,7 @@ class ModuleView extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          );
         },
       ) : Center(child: Padding(
         padding: const EdgeInsets.only(top: Dimensions.paddingSizeSmall), child: Text('no_module_found'.tr),
