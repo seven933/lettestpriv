@@ -2,6 +2,7 @@ class ModuleModel {
   int? id;
   String? moduleName;
   String? moduleType;
+  String? moduleResponse;
   String? thumbnail;
   String? icon;
   int? themeId;
@@ -23,6 +24,7 @@ class ModuleModel {
     this.createdAt,
     this.updatedAt,
     this.zones,
+    this.moduleResponse = '',
   });
 
   ModuleModel.fromJson(Map<String, dynamic> json) {
