@@ -11,10 +11,8 @@ class AppConstants {
   static const String fontFamily = 'Roboto';
   static const bool payInWevView = false;
   static const int balanceInputLen = 10;
-  //static const String webHostedUrl = 'https://6ammart-web.6amtech.com';
   static const String webHostedUrl = 'https://brunod8.sg-host.com';
 
-  //static const String baseUrl = 'https://6ammart-admin.6amtech.com';
   static const String baseUrl = 'https://brunod8.sg-host.com';
   static const String cardBrandsList = '/api/v1/card-brands/list/';
   static const String categoryUri = '/api/v1/categories';
@@ -236,9 +234,9 @@ class AppConstants {
   static const String grocery = 'grocery';
 
   static List<LanguageModel> languages = [
+    LanguageModel(imageUrl: Images.brazilFlag, languageName: 'Português', countryCode: 'PT', languageCode: 'br'),
     LanguageModel(imageUrl: Images.language, languageName: 'English', countryCode: 'US', languageCode: 'en'),
     //LanguageModel(imageUrl: Images.brazilFlag, languageName: 'عربى', countryCode: 'SA', languageCode: 'ar'),
-    LanguageModel(imageUrl: Images.brazilFlag, languageName: 'Português', countryCode: 'PT', languageCode: 'br'),
     // LanguageModel(imageUrl: Images.arabic, languageName: 'Spanish', countryCode: 'ES', languageCode: 'es'),
     // LanguageModel(imageUrl: Images.bengali, languageName: 'Bengali', countryCode: 'BN', languageCode: 'bn'),
   ];

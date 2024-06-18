@@ -67,8 +67,8 @@ class FoodHomeScreen extends StatelessWidget {
                         children: [
                         CustomImage(
                             image: '${splashController.configModel!.baseUrls!.moduleImageUrl}/${splashController.moduleList![0].icon}',
-                            height: 50,
-                            width: 50,
+                            height: 80,
+                            width: 800,
                         ),
                         const SizedBox(height: Dimensions.paddingSizeSmall),
                         Center(

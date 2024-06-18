@@ -98,11 +98,12 @@ class SplashRepository implements SplashRepositoryInterface {
 
   @override
   Future<List<ModuleModel>?> getModules({Map<String, String>? headers}) async {
-    List<ModuleModel>? moduleList;
+    List<ModuleModel>? moduleList; 
     Response response = await apiClient.getData(AppConstants.moduleUri, headers: headers);
     if (response.statusCode == 200) {
       moduleList = [];
       response.body.forEach((storeCategory) => moduleList!.add(ModuleModel.fromJson(storeCategory)));
+      moduleList![0].moduleResponse = response.body.toString();
     }
     return moduleList;
   }

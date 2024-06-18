@@ -77,7 +77,7 @@ class SplashController extends GetxController implements GetxService {
       _configModel = ConfigModel.fromJson(response.body);
       if(_configModel!.module != null) {
         setModule(_configModel!.module);
-      }else if(GetPlatform.isWeb || (loadModuleData && _module != null)) {
+      }else if((loadModuleData && _module != null)) {
         setModule(GetPlatform.isWeb ? splashServiceInterface.getModule() : _module);
       }
       if(loadLandingData){

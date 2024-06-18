@@ -281,9 +281,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const SizedBox(width: Dimensions.paddingSizeExtraSmall),
                           Expanded(child: Text(
-                            '${Get.find<SplashController>().moduleList![0].moduleResponse!}'
-                            //Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText!
-                                /*? 'search_food_or_restaurant'.tr : 'search_item_or_store'.tr*/,
+                            Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText!
+                                ? 'search_food_or_restaurant'.tr : 'search_item_or_store'.tr,
                             style: robotoRegular.copyWith(
                               fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).hintColor,
                             ),
