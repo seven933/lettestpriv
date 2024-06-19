@@ -434,7 +434,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                     margin: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       color: selectedToggleIndex == index
-                          ? Theme.of(context).primary, // Cor de fundo quando selecionado
+                          ? Theme.of(context).primary // Cor de fundo quando selecionado
                           : unselectedColor, // Cor de fundo quando não selecionado
                       borderRadius: BorderRadius.circular(20),
                     ),

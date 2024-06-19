@@ -481,7 +481,7 @@ class CheckoutController extends GetxController implements GetxService {
         );
          
 
-        Get.toNamed(RouteHelper.getPixPaymentScreen(pixKey, placeOrderBody.orderAmount ?? 0.0);
+        Get.toNamed(RouteHelper.getPixPaymentScreen(pixKey, placeOrderBody.orderAmount ?? 0.0));
 
       }
 
