@@ -27,14 +27,18 @@ class UpdateProfileScreen extends StatefulWidget {
 }
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
+  
   final FocusNode _firstNameFocus = FocusNode();
   final FocusNode _lastNameFocus = FocusNode();
   final FocusNode _emailFocus = FocusNode();
   final FocusNode _phoneFocus = FocusNode();
+  final FocusNode _cpfFocus = FocusNode();
+
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _cpfController = TextEditingController();
 
   @override
   void initState() {
@@ -57,7 +61,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       appBar: ResponsiveHelper.isDesktop(context) ? const WebMenuBar() : null,
       endDrawer: const MenuDrawer(),endDrawerEnableOpenDragGesture: false,
       body: GetBuilder<ProfileController>(builder: (profileController) {
-        bool isLoggedIn = AuthHelper.isLoggedIn();
+        bool isLoggedIn = AuthHelper.isLoggedIn(); 
         if(profileController.userInfoModel != null && _phoneController.text.isEmpty) {
           _firstNameController.text = profileController.userInfoModel!.fName ?? '';
           _lastNameController.text = profileController.userInfoModel!.lName ?? '';
@@ -115,6 +119,28 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
                   ),
                   const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+
+                  // - Campo do CPF
+                  MyTextField(
+                    hintText: 'cpf'.tr,
+                    controller: _emailController,
+                    focusNode: _emailFocus,
+                    inputAction: TextInputAction.done,
+                    inputType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(height: Dimensions.paddingSizeLarge),
+                  
+                  // - Campo da data de nascimento
+                  MyTextField(
+                    hintText: 'birthdate'.tr,
+                    controller: _emailController,
+                    focusNode: _emailFocus,
+                    inputAction: TextInputAction.done,
+                    inputType: TextInputType.emailAddress,
+                  ),
+
+                  // - Campo do email
+                  const SizedBox(height: Dimensions.paddingSizeLarge),
                   MyTextField(
                     hintText: 'email'.tr,
                     controller: _emailController,
