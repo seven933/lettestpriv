@@ -54,6 +54,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     Get.find<ProfileController>().initData();
   }
 
+  String maskCpf(String cpf) {
+    if (cpf.length >= 11) {
+      return '***.***.${cpf.substring(cpf.length - 3)}';
+    }
+    return cpf;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +75,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
           _phoneController.text = profileController.userInfoModel!.phone ?? '';
           _emailController.text = profileController.userInfoModel!.email ?? '';
           _cpfController.text = profileController.userInfoModel!.cpf ?? '';
+
+          String rawCpf = profileController.userInfoModel!.cpf ?? '';
+          _cpfController.text = maskCpf(rawCpf);
+        
         }
 
         return isLoggedIn ? profileController.userInfoModel != null ? ProfileBgWidget(
