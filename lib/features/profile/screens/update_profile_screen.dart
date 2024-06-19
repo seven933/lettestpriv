@@ -27,7 +27,7 @@ class UpdateProfileScreen extends StatefulWidget {
 }
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
-  
+
   final FocusNode _firstNameFocus = FocusNode();
   final FocusNode _lastNameFocus = FocusNode();
   final FocusNode _emailFocus = FocusNode();
@@ -67,6 +67,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
           _lastNameController.text = profileController.userInfoModel!.lName ?? '';
           _phoneController.text = profileController.userInfoModel!.phone ?? '';
           _emailController.text = profileController.userInfoModel!.email ?? '';
+          _cpfController.text = profileController.userInfoModel!.cpf ?? '';
         }
 
         return isLoggedIn ? profileController.userInfoModel != null ? ProfileBgWidget(
@@ -114,23 +115,34 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   ),
                   const SizedBox(height: Dimensions.paddingSizeLarge),
 
-                  Text(
-                    'email'.tr,
-                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
-                  ),
-                  const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-
                   // - Campo do CPF
+                  Row(children: [
+                    Text(
+                      'cpf'.tr,
+                      style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
+                    ),
+                    const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                    Text('(${'non_changeable'.tr})', style: robotoRegular.copyWith(
+                      fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).colorScheme.error,
+                    )),
+                  ]),
+                  const SizedBox(height: Dimensions.paddingSizeExtraSmall),
                   MyTextField(
                     hintText: 'cpf'.tr,
-                    controller: _emailController,
-                    focusNode: _emailFocus,
+                    controller: _cpfController,
+                    focusNode: _cpfFocus,
                     inputAction: TextInputAction.done,
                     inputType: TextInputType.emailAddress,
+                    isEnabled: false
                   ),
                   const SizedBox(height: Dimensions.paddingSizeLarge),
                   
                   // - Campo da data de nascimento
+                  Text(
+                    'birthdate'.tr,
+                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
+                  ),
+                  const SizedBox(height: Dimensions.paddingSizeExtraSmall),
                   MyTextField(
                     hintText: 'birthdate'.tr,
                     controller: _emailController,
@@ -140,6 +152,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   ),
 
                   // - Campo do email
+                  Text(
+                    'email'.tr,
+                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
+                  ),
+                  const SizedBox(height: Dimensions.paddingSizeExtraSmall),
                   const SizedBox(height: Dimensions.paddingSizeLarge),
                   MyTextField(
                     hintText: 'email'.tr,
