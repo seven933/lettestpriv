@@ -451,7 +451,7 @@ class CheckoutController extends GetxController implements GetxService {
     return orderID;
   }
 
-  Future<String> placeOrderToCashOnDelivery(PlaceOrderBodyModel placeOrderBody) async {
+  Future<String> placeOrderToCashOnDelivery(PlaceOrderBodyModel placeOrderBody, bool fromCart) async {
     
     _isLoading = true;
 
