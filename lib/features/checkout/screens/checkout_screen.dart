@@ -522,7 +522,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   orderNote: checkoutController.noteController.text, orderType: checkoutController.orderType,
                   paymentMethod: checkoutController.paymentMethodIndex == 0 ? 'cash_on_delivery'
                                 : checkoutController.paymentMethodIndex == 1 ? 'wallet'
-                                : checkoutController.paymentMethodIndex == 2 ? 'pix_on_delivery' 
+                                //: checkoutController.paymentMethodIndex == 2 ? 'pix_on_delivery' 
                                 : checkoutController.paymentMethodIndex == 3 ? 'credit_card_on_delivery' 
                                 : checkoutController.paymentMethodIndex == 4 ? 'debit_card_on_delivery'
                                 : checkoutController.paymentMethodIndex == 5 ? 'pix' 
@@ -550,6 +550,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   guestEmail: isGuestLogIn ? finalAddress.email : null,
                   needChange: 1,
                   cashOnDeliveryAmountToPay: 50,
+                  userCpf: Get.find<ProfileController>().userInfoModel!.cpf,
                 );
 
                 /*if(checkoutController.paymentMethodIndex == 3){

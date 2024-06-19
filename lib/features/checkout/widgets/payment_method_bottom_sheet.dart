@@ -392,11 +392,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.vertical(
             top: const Radius.circular(Dimensions.radiusLarge),
-            bottom: Radius.circular(
-              ResponsiveHelper.isDesktop(context)
-                  ? Dimensions.radiusLarge
-                  : 0,
-            ),
+            bottom: Radius.circular(0,),
           ),
         ),
         padding: const EdgeInsets.symmetric(
@@ -406,26 +402,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ResponsiveHelper.isDesktop(context)
-                ? Align(
-                    alignment: Alignment.topRight,
-                    child: InkWell(
-                      onTap: () => Get.back(),
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        margin: const EdgeInsets.symmetric(
-                          vertical: Dimensions.paddingSizeExtraSmall,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: const Icon(Icons.clear),
-                      ),
-                    ),
-                  )
-                : Align(
+            Align(
                     alignment: Alignment.center,
                     child: Container(
                       height: 4,
@@ -438,7 +415,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                  ),
+            ),
             const SizedBox(height: Dimensions.paddingSizeLarge),
             // Use GestureDetector e Container para criar botões personalizados
             Row(
@@ -457,7 +434,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                     margin: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       color: selectedToggleIndex == index
-                          ? selectedColor // Cor de fundo quando selecionado
+                          ? Theme.of(context).primary, // Cor de fundo quando selecionado
                           : unselectedColor, // Cor de fundo quando não selecionado
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -587,7 +564,8 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                           )
                                         : const SizedBox(),
                                   ),
-                                  Flexible(
+                                  // Pix na entrega
+                                  /*Flexible(
                                     child: PaymentButtonNew(
                                       icon: Images.pix,
                                       title: 'pix_on_delivery'.tr,
@@ -598,7 +576,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                         checkoutController.setPaymentMethod(2);
                                       },
                                     ),
-                                  ),
+                                  ),*/
                                   Flexible(
                                     child: PaymentButtonNew(
                                       icon: Images.cards,

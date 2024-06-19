@@ -417,10 +417,10 @@ class CheckoutController extends GetxController implements GetxService {
       String? message = response.body['message'];
       orderID = response.body['order_id'].toString();
 
+
       //if(!isOfflinePay) {
 
         //callback(true, message, orderID, zoneID, amount, maximumCodOrderAmount, fromCart, isCashOnDeliveryActive, placeOrderBody.contactPersonNumber!);
-      
       //} else {
 
         //Get.find<CartController>().getCartDataOnline();
@@ -466,16 +466,22 @@ class CheckoutController extends GetxController implements GetxService {
 
       orderID = response.body['order_id'].toString();
 
+      if(fromCart){
+
+        Get.find<CartController>().clearCartList();
+        
+      }
+
       if(placeOrderBody.paymentMethod == 'pix'){
 
         PixController pixController = Get.find<PixController>();
 
         String pixKey = await pixController.createPixPayment(
-          jsonEncode(CreatePixPaymentModel(transactionAmount: placeOrderBody.orderAmount ?? 0.0)),
+          jsonEncode(CreatePixPaymentModel(transactionAmount: placeOrderBody.orderAmount ?? 0.0, userCpf: placeOrderBody.userCpf ?? '')),
         );
          
 
-        Get.toNamed(RouteHelper.getPixPaymentScreen(pixKey, placeOrderBody.orderAmount ?? 0.0));
+        Get.toNamed(RouteHelper.getPixPaymentScreen(pixKey, placeOrderBody.orderAmount ?? 0.0);
 
       }
 

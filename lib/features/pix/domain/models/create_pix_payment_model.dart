@@ -5,18 +5,21 @@
 class CreatePixPaymentModel{
 
 	double transactionAmount;
-	
-	CreatePixPaymentModel({required this.transactionAmount});
+	String userCpf;
+
+	CreatePixPaymentModel({required this.transactionAmount, required this.userCpf});
 
 	factory CreatePixPaymentModel.fromJson(Map<String, dynamic> json) {
 	    return CreatePixPaymentModel(
 	      transactionAmount: json['transaction_amount'],
+	      userCpf: json['user_cpf'],
 	    );
 	}
 
 	Map<String, dynamic> toJson() {
     	return {
       		'transaction_amount': transactionAmount,
+      		'user_cpf': userCpf,
     	};
   	}
 

@@ -38,6 +38,7 @@ class PlaceOrderBodyModel {
   String? _guestEmail;
   int? _needChange;
   double? _cashOnDeliveryAmountToPay;
+  String? _userCpf;
 
   PlaceOrderBodyModel({
     required List<OnlineCart> cart,
@@ -75,6 +76,8 @@ class PlaceOrderBodyModel {
     required String? guestEmail,
     int? needChange,
     double? cashOnDeliveryAmountToPay,
+    String? userCpf,
+
   }) {
     _cart = cart;
     _couponDiscountAmount = couponDiscountAmount;
@@ -111,6 +114,7 @@ class PlaceOrderBodyModel {
     _guestEmail = guestEmail;
     _needChange = needChange;
     _cashOnDeliveryAmountToPay = cashOnDeliveryAmountToPay;
+    _userCpf = userCpf;
   }
 
   List<OnlineCart>? get cart => _cart;
@@ -147,6 +151,7 @@ class PlaceOrderBodyModel {
   String? get guestEmail => _guestEmail;
   int? get needChange => _needChange;
   double? get cashOnDeliveryAmountToPay => _cashOnDeliveryAmountToPay;
+  String? get userCpf => _userCpf;
 
   PlaceOrderBodyModel.fromJson(Map<String, dynamic> json) {
     if (json['cart'] != null) {
@@ -190,6 +195,8 @@ class PlaceOrderBodyModel {
     _guestEmail = json['contact_person_email'];
     _needChange = json['need_change'] != null ? int.parse(json['need_change'].toString()) : 0;
     _cashOnDeliveryAmountToPay = json['cash_on_delivery_amount_to_pay'] != null ? double.parse(json['cash_on_delivery_amount_to_pay'].toString()) : 0.0;
+    _userCpf = json['user_cpf'] != null ? json['user_cpf'].toString() : null; 
+
   }
 
   Map<String, String> toJson() {
@@ -255,6 +262,7 @@ class PlaceOrderBodyModel {
     }
     data['need_change'] = _needChange.toString();
     data['cash_on_delivery_amount_to_pay'] = _cashOnDeliveryAmountToPay.toString();
+    data['user_cpf'] = _userCpf.toString();
     return data;
   }
 }
