@@ -6,6 +6,7 @@ class CreatePixPaymentModel{
 
 	double transactionAmount;
 	String userCpf;
+	String orderId;
 
 	CreatePixPaymentModel({required this.transactionAmount, required this.userCpf});
 
@@ -13,6 +14,7 @@ class CreatePixPaymentModel{
 	    return CreatePixPaymentModel(
 	      transactionAmount: json['transaction_amount'],
 	      userCpf: json['user_cpf'],
+	      orderId: json['order_id'],
 	    );
 	}
 
@@ -20,6 +22,7 @@ class CreatePixPaymentModel{
     	return {
       		'transaction_amount': transactionAmount,
       		'user_cpf': userCpf,
+      		'order_id': orderId,
     	};
   	}
 

@@ -477,7 +477,7 @@ class CheckoutController extends GetxController implements GetxService {
         PixController pixController = Get.find<PixController>();
 
         String pixKey = await pixController.createPixPayment(
-          jsonEncode(CreatePixPaymentModel(transactionAmount: placeOrderBody.orderAmount ?? 0.0, userCpf: placeOrderBody.userCpf ?? '')),
+          jsonEncode(CreatePixPaymentModel(transactionAmount: placeOrderBody.orderAmount ?? 0.0, userCpf: placeOrderBody.userCpf ?? '', orderId: orderID)),
         );
          
 
