@@ -8,7 +8,7 @@ class CreatePixPaymentModel{
 	String userCpf;
 	String orderId;
 
-	CreatePixPaymentModel({required this.transactionAmount, required this.userCpf});
+	CreatePixPaymentModel({required this.transactionAmount, required this.userCpf, this.orderId});
 
 	factory CreatePixPaymentModel.fromJson(Map<String, dynamic> json) {
 	    return CreatePixPaymentModel(
