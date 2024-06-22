@@ -89,6 +89,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/wallet/screens/wallet_screen.dart';
 import 'package:sixam_mart/features/card/screens/add_card_account.dart';
+import 'package:sixam_mart/features/card/screens/register_new_card_screen.dart';
 import 'package:sixam_mart/features/payment/screens/pix_payment_screen.dart';
 
 class RouteHelper {
@@ -580,7 +581,7 @@ class RouteHelper {
     )),
     GetPage(name: favourite, page: () => const FavouriteScreen()),
     GetPage(name: accountCards, page: () => const AccountCardListScreen()),
-    GetPage(name: addAccountCard, page: () => AddCardAccountScreen()),
+    GetPage(name: addAccountCard, page: () => RegisterNewCardScreen()),
     GetPage(
       name: pixPayment,
       page: () => PixPaymentScreen(
