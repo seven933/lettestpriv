@@ -8,7 +8,7 @@ import 'package:sixam_mart/util/images.dart';
   _RegisterNewCardScreenState createState() => _RegisterNewCardScreenState();
 }
 
-class _RegisterNewCardScreenScreenState extends State<RegisterNewCardScreen> {
+class _RegisterNewCardScreenState extends State<RegisterNewCardScreen> {
 
 	bool isLightTheme = true;
   	String cardNumber = '';
