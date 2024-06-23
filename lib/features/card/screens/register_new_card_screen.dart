@@ -197,7 +197,7 @@ class _RegisterNewCardScreenState extends State<RegisterNewCardScreen> {
 	                                decoration: const BoxDecoration(
 	                                  gradient: LinearGradient(
 	                                    colors: <Color>[
-	                                      Theme.of(context).primaryColor,
+	                                      const Color(0xFFFD7014),
 	                                    ],
 	                                    begin: Alignment(-1, -4),
 	                                    end: Alignment(1, 4),
