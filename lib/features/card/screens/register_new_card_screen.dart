@@ -5,7 +5,7 @@ import 'package:sixam_mart/util/images.dart';
 
  class RegisterNewCardScreen extends StatefulWidget {
   @override
-  _RegisterNewCardScreenState createState() => RegisterNewCardScreenState();
+  _RegisterNewCardScreenState createState() => _RegisterNewCardScreenState();
 }
 
 class _RegisterNewCardScreenScreenState extends State<RegisterNewCardScreen> {
@@ -74,9 +74,7 @@ class _RegisterNewCardScreenScreenState extends State<RegisterNewCardScreen> {
 	                      obscureCardNumber: true,
 	                      obscureCardCvv: true,
 	                      isHolderNameVisible: true,
-	                      cardBgColor: isLightTheme
-	                          ? AppColors.cardBgLightColor
-	                          : AppColors.cardBgColor,
+	                      cardBgColor: Theme.of(context).cardColor,
 	                      backgroundImage:
 	                          useBackgroundImage ? Images.walletBonus : null,
 	                      isSwipeGestureEnabled: true,
@@ -140,7 +138,7 @@ class _RegisterNewCardScreenScreenState extends State<RegisterNewCardScreen> {
 	                                    value: useGlassMorphism,
 	                                    inactiveTrackColor: Colors.grey,
 	                                    activeColor: Colors.white,
-	                                    activeTrackColor: AppColors.colorE5D1B2,
+	                                    activeTrackColor: Theme.of(context).primaryColor,
 	                                    onChanged: (bool value) => setState(() {
 	                                      useGlassMorphism = value;
 	                                    }),
@@ -160,7 +158,7 @@ class _RegisterNewCardScreenScreenState extends State<RegisterNewCardScreen> {
 	                                    value: useBackgroundImage,
 	                                    inactiveTrackColor: Colors.grey,
 	                                    activeColor: Colors.white,
-	                                    activeTrackColor: AppColors.colorE5D1B2,
+	                                    activeTrackColor: Theme.of(context).primaryColor,
 	                                    onChanged: (bool value) => setState(() {
 	                                      useBackgroundImage = value;
 	                                    }),
@@ -180,7 +178,7 @@ class _RegisterNewCardScreenScreenState extends State<RegisterNewCardScreen> {
 	                                    value: useFloatingAnimation,
 	                                    inactiveTrackColor: Colors.grey,
 	                                    activeColor: Colors.white,
-	                                    activeTrackColor: AppColors.colorE5D1B2,
+	                                    activeTrackColor: Theme.of(context).primaryColor,
 	                                    onChanged: (bool value) => setState(() {
 	                                      useFloatingAnimation = value;
 	                                    }),
@@ -199,13 +197,7 @@ class _RegisterNewCardScreenScreenState extends State<RegisterNewCardScreen> {
 	                                decoration: const BoxDecoration(
 	                                  gradient: LinearGradient(
 	                                    colors: <Color>[
-	                                      AppColors.colorB58D67,
-	                                      AppColors.colorB58D67,
-	                                      AppColors.colorE5D1B2,
-	                                      AppColors.colorF9EED2,
-	                                      AppColors.colorEFEFED,
-	                                      AppColors.colorF9EED2,
-	                                      AppColors.colorB58D67,
+	                                      Theme.of(context).primaryColor,
 	                                    ],
 	                                    begin: Alignment(-1, -4),
 	                                    end: Alignment(1, 4),
@@ -241,4 +233,40 @@ class _RegisterNewCardScreenScreenState extends State<RegisterNewCardScreen> {
       	);
 
 	}
+
+
+	void _onValidate() {
+	    if (formKey.currentState?.validate() ?? false) {
+	      print('valid!');
+	    } else {
+	      print('invalid!');
+	    }
+	}
+
+	  Glassmorphism? _getGlassmorphismConfig() {
+	    if (!useGlassMorphism) {
+	      return null;
+	    }
+
+	    final LinearGradient gradient = LinearGradient(
+	      begin: Alignment.topLeft,
+	      end: Alignment.bottomRight,
+	      colors: <Color>[Colors.grey.withAlpha(50), Colors.grey.withAlpha(50)],
+	      stops: const <double>[0.3, 0],
+	    );
+
+	    return isLightTheme
+	        ? Glassmorphism(blurX: 8.0, blurY: 16.0, gradient: gradient)
+	        : Glassmorphism.defaultConfig();
+	  }
+
+	  void onCreditCardModelChange(CreditCardModel creditCardModel) {
+	    setState(() {
+	      cardNumber = creditCardModel.cardNumber;
+	      expiryDate = creditCardModel.expiryDate;
+	      cardHolderName = creditCardModel.cardHolderName;
+	      cvvCode = creditCardModel.cvvCode;
+	      isCvvFocused = creditCardModel.isCvvFocused;
+	    });
+	  }
 }
