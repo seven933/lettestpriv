@@ -7,9 +7,20 @@ class CardModel{
   String expirationDate;
   int cvv;
   String type;
-  String brand; 
+  String brand;
+  String cardHolderName;
+  String cpf; 
 
-  CardModel({ required this.nickname, required this.cardNumber, required this.expirationDate, required this.cvv, required this.type, required this.brand});
+  CardModel({ 
+    required this.nickname, 
+    required this.cardNumber, 
+    required this.expirationDate, 
+    required this.cvv, 
+    required this.type, 
+    required this.brand
+    required this.cardHolderName,
+    required this.cpf
+  });
 
   factory CardModel.fromMap(Map<String, dynamic> map){
 
@@ -21,6 +32,8 @@ class CardModel{
       cvv: map['cvv'],
       type: map['type'],
       brand: map['brand'],
+      cardHolderName: map['card_holder_name'],
+      cpf: map['cpf'],
       
     );
 
@@ -38,6 +51,8 @@ class CardModel{
       'cvv' : cvv,
       'type' : type,
       'brand' : brand,
+      'card_holder_name': cardHolderName,
+      'cpf': cpf,
     };
 
   }

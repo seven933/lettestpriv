@@ -233,20 +233,9 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
   );
 }
 
-  // Seleciona a bandeira do cartão na entrega
-  /*Widget _buildCardBrandButton(String image) {
-    return IconButton(
-      icon: Image.asset(image),
-      onPressed: () {
-        // Lógica para selecionar a bandeira do cartão
-        Get.back();
-      },
-    );
-  }*/
-
-
   // Exibe um bottomsheet com a lista de cartões cadastrados
-  void _showCardSelectionDialog() {
+  void _showCardSelectionDialog(CheckoutController checkoutController) {
+
     Get.bottomSheet(
       Container(
         padding: EdgeInsets.all(16.0),
@@ -259,8 +248,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                 children: cardController.accountCardList!.map((card) {
                   return InkWell(
                     onTap: () {
-                      // Lógica para selecionar o cartão e atualizar a interface do usuário
-                      // checkoutController.selectCard(card);
+                      checkoutController.setSelectedCard(card);
                       Get.back();
                     },
                     child: Container(
@@ -529,7 +517,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                           6,
                                       onTap: () {
                                         checkoutController.setPaymentMethod(6);
-                                        _showCardSelectionDialog();
+                                        _showCardSelectionDialog(checkoutController);
                                       },
                                     ),
                                   ),
@@ -542,7 +530,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                           7,
                                       onTap: () {
                                         checkoutController.setPaymentMethod(7);
-                                        _showCardSelectionDialog();
+                                        _showCardSelectionDialog(checkoutController);
                                       },
                                     ),
                                   ),

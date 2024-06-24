@@ -16,11 +16,15 @@ class AddCardAccountScreen extends StatefulWidget {
 }
 
 class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
+  
   TextEditingController nicknameController = TextEditingController();
   TextEditingController cardNumberController = TextEditingController();
   TextEditingController expirationDateController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   TextEditingController typeController = TextEditingController();
+  TextEditingController cardHolderNameController = TextEditingController();
+  TextEditingController cpfControlller = TextEditingController();
+
 
   int type = 0;
   CardBrand cardBrand = CardBrand.invalid;
@@ -112,6 +116,8 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
   void _handleSave() {
     final newCard = CardModel(
       nickname: nicknameController.text,
+      cardHolderName: cardNumberController.text,
+      cpf: cpfControlller.text,
       cardNumber: cardNumberController.text,
       expirationDate: expirationDateController.text,
       cvv: int.parse(cvvController.text),
@@ -156,6 +162,21 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                   controller: nicknameController,
                   decoration:
                       InputDecoration(labelText: 'account_card_nickname'.tr),
+                ),
+                SizedBox(height: 12.0),
+
+                TextField(
+                  controller: cardHolderNameController,
+                  decoration:
+                      InputDecoration(labelText: 'card_holder'.tr),
+                ),
+                SizedBox(height: 12.0),
+
+                TextField(
+                  controller: cpfControlller,
+                  decoration:
+                      InputDecoration(labelText: 'card_holder_cpf'.tr),
+                  keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 12.0),
                 Row(

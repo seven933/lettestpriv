@@ -41,6 +41,8 @@
     "cancel_order": "Cancelar Pedido",
     "cancel": "Cancelar",
     "canceled": "Cancelado",
+    "card_holder" : "Proprietário do Cartão",
+    "card_holder_cpf" : "CPF do Proprietário do Cartão",
     "cart_is_empty": "Seu carrinho está vazio",
     "cash_on_delivery": "Dinheiro na Entrega",
     "categories": "Categorias",

@@ -35,6 +35,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:sixam_mart/features/checkout/screens/order_successful_screen.dart';
 import 'package:sixam_mart/features/pix/controllers/pix_controller.dart';
 import 'package:sixam_mart/features/pix/domain/models/create_pix_payment_model.dart';
+import 'package:mercadopago_sdk/mercadopago_sdk.dart';
 
 class CheckoutController extends GetxController implements GetxService {
   final CheckoutServiceInterface checkoutServiceInterface;
@@ -49,6 +50,22 @@ class CheckoutController extends GetxController implements GetxService {
   final FocusNode streetNode = FocusNode();
   final FocusNode houseNode = FocusNode();
   final FocusNode floorNode = FocusNode();
+
+  // MercadoPago form
+  final _formKey = GlobalKey<FormState>();
+
+  final _cardNumberController = TextEditingController();
+  final _expirationMonthController = TextEditingController();
+  final _expirationYearController = TextEditingController();
+  final _securityCodeController = TextEditingController();
+  final _cardholderNameController = TextEditingController();
+  final _docTypeController = TextEditingController();
+  final _docNumberController = TextEditingController();
+  final _amountController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final _installmentsController = TextEditingController();
+  final _paymentMethodIdController = TextEditingController();
+  final _issuerIdController = TextEditingController();
 
   String? countryDialCode = Get.find<AuthController>().getUserCountryCode().isNotEmpty ? Get.find<AuthController>().getUserCountryCode()
       : CountryCode.fromCountryCode(Get.find<SplashController>().configModel!.country!).dialCode ?? Get.find<LocalizationController>().locale.countryCode;
@@ -146,6 +163,9 @@ class CheckoutController extends GetxController implements GetxService {
   bool _isExpand = false;
   bool get isExpand => _isExpand;
 
+  CardModel? _selectedCreditCard = null;
+  bool get selectedCreditCard;
+
   Future<void> initCheckoutData(int? storeId) async {
 
     Get.find<CouponController>().removeCouponData(false);
@@ -168,6 +188,13 @@ class CheckoutController extends GetxController implements GetxService {
   void expandedUpdate(bool status){
     _isExpanded = status;
     update();
+  }
+
+  void setSelectedCard(CardModel cardId){
+
+    _selectedCreditCard = cardId;
+    update();
+
   }
 
   // Define a quantidade de dinheiro na entrega que será pago
@@ -482,6 +509,30 @@ class CheckoutController extends GetxController implements GetxService {
          
 
         Get.toNamed(RouteHelper.getPixPaymentScreen(pixKey, placeOrderBody.orderAmount ?? 0.0));
+
+      } else if(placeOrderBody.paymentMethod == 'credit_card'){
+
+        if(_selectedCreditCard != null){
+
+//          final mp = MP('your_public_key', 'your_access_token');
+
+  /*        final cardData = {
+            'cardNumber': _selectedCreditCard.nickname.,
+            'expirationMonth': _expirationMonthController.text,
+            'expirationYear': _expirationYearController.text,
+            'securityCode': _securityCodeController.text,
+            'cardholder': {
+              'name': _cardholderNameController.text,
+              'identification': {
+                'type': _docTypeController.text,
+                'number': _docNumberController.text,
+              },
+          };
+    */      
+
+        }
+        
+
 
       }
 

@@ -581,7 +581,7 @@ class RouteHelper {
     )),
     GetPage(name: favourite, page: () => const FavouriteScreen()),
     GetPage(name: accountCards, page: () => const AccountCardListScreen()),
-    GetPage(name: addAccountCard, page: () => RegisterNewCardScreen()),
+    GetPage(name: addAccountCard, page: () => AddCardAccountScreen()),
     GetPage(
       name: pixPayment,
       page: () => PixPaymentScreen(
