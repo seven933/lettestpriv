@@ -164,9 +164,8 @@ class CheckoutController extends GetxController implements GetxService {
   bool _isExpand = false;
   bool get isExpand => _isExpand;
 
-//
   CardModel? _selectedCreditCard = null;
-  CardModel? get selectedCreditCard;
+  CardModel? get selectedCreditCard => _selectedCreditCard;
 
   Future<void> initCheckoutData(int? storeId) async {
 

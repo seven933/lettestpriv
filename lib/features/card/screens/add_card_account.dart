@@ -116,7 +116,7 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
   void _handleSave() {
     final newCard = CardModel(
       nickname: nicknameController.text,
-      cardHolderName: cardHolderName.text,
+      cardHolderName: cardHolderNameController.text,
       cpf: cpfControlller.text,
       cardNumber: cardNumberController.text,
       expirationDate: expirationDateController.text,
