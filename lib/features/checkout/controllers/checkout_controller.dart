@@ -35,6 +35,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:sixam_mart/features/checkout/screens/order_successful_screen.dart';
 import 'package:sixam_mart/features/pix/controllers/pix_controller.dart';
 import 'package:sixam_mart/features/pix/domain/models/create_pix_payment_model.dart';
+import 'package:sixam_mart/features/card/domain/models/card_model.dart';
 import 'package:mercadopago_sdk/mercadopago_sdk.dart';
 
 class CheckoutController extends GetxController implements GetxService {
