@@ -17,9 +17,9 @@ class CardModel{
     required this.expirationDate, 
     required this.cvv, 
     required this.type, 
-    required this.brand
+    required this.brand,
     required this.cardHolderName,
-    required this.cpf
+    required this.cpf,
   });
 
   factory CardModel.fromMap(Map<String, dynamic> map){
