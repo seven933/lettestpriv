@@ -13,7 +13,7 @@ class AppConstants {
   static const int balanceInputLen = 10;
   static const String webHostedUrl = 'https://brunod8.sg-host.com';
 
-  static const String baseUrl = 'https://brunod8.sg-host.com';
+  static const String baseUrl = 'https://anunce.com';
   static const String cardBrandsList = '/api/v1/card-brands/list/';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
