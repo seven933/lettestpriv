@@ -38,6 +38,7 @@ import 'package:sixam_mart/features/parcel/widgets/delivery_instruction_bottom_s
 import 'package:sixam_mart/features/parcel/widgets/details_widget.dart';
 
 class ParcelRequestScreen extends StatefulWidget {
+
   final ParcelCategoryModel parcelCategory;
   final AddressModel pickedUpAddress;
   final AddressModel destinationAddress;
@@ -403,25 +404,42 @@ class _ParcelRequestScreenState extends State<ParcelRequestScreen> {
                 ]),
                 const SizedBox(height: Dimensions.paddingSizeLarge),
 
+                // Meios de Pagamento
                 Row(children: [
+
+                  // >>> Pagamento com Pix, index = 0.
+                  Expanded(
+                    
+                    child: PaymentButton(
+                      icon: Images.pix,
+                      title: 'pix'.tr,
+                      subtitle: 'faster_and_safe_way'.tr,
+                      isSelected: parcelController.paymentIndex == 0,
+                      onTap: () => parcelController.setPaymentIndex(0, true),
+                    ),
+
+                  ),
+
+                  // >>> Pagamento com Dinheiro na entrega, index = 1 
                   _isCashOnDeliveryActive! ? Expanded(
                     child: PaymentButton(
                       icon: Images.cashOnDelivery,
                       title: 'cash_on_delivery'.tr,
                       subtitle: 'pay_your_payment_after_getting_item'.tr,
-                      isSelected: parcelController.paymentIndex == 0,
-                      onTap: () => parcelController.setPaymentIndex(0, true),
+                      isSelected: parcelController.paymentIndex == 1,
+                      onTap: () => parcelController.setPaymentIndex(1, true),
                     ),
                   ) : const SizedBox(),
                   SizedBox(width: (Get.find<SplashController>().configModel!.customerWalletStatus == 1 && parcelController.payerIndex == 0 && !isGuestLoggedIn) ? Dimensions.paddingSizeLarge : 0),
 
+                  // >>> Pagamento com a carteira, index = 2
                   (Get.find<SplashController>().configModel!.customerWalletStatus == 1 && parcelController.payerIndex == 0 && !isGuestLoggedIn) ? Expanded(
                     child: PaymentButton(
                       icon: Images.wallet,
                       title: 'wallet_payment'.tr,
                       subtitle: 'pay_from_your_existing_balance'.tr,
-                      isSelected: parcelController.paymentIndex == 1,
-                      onTap: () => parcelController.setPaymentIndex(1, true),
+                      isSelected: parcelController.paymentIndex == 2,
+                      onTap: () => parcelController.setPaymentIndex(2, true),
                     ),
                   ) : const SizedBox(),
                 ]),
