@@ -46,7 +46,7 @@ class FoodHomeScreen extends StatelessWidget {
       ),
 
       // - Barra com módulos
-      Column(
+      /*Column(
         children: [
           Text('other_modules'.tr),
           CustomInkWell(
@@ -90,7 +90,7 @@ class FoodHomeScreen extends StatelessWidget {
             
         ),
         ],
-      ),
+      ),*/
       
 
       const CategoryView(),

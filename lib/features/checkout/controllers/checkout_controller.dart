@@ -437,7 +437,7 @@ class CheckoutController extends GetxController implements GetxService {
     _isLoading = false;
 
     if(placeOrderBody.paymentMethod == 'cash_on_delivery'){
-      Get.toNamed(RouteHelper.getOrderSuccessRoute('100037', '74999874668'));
+      Get.toNamed(RouteHelper.getOrderSuccessRoute(response.body['order_id'], Get.find<ProfileController>().userInfoModel!.phone));
     } 
 
     if (response.statusCode == 200) {
