@@ -151,7 +151,6 @@ class PlaceOrderBodyModel {
   int? get isBuyNow => _isBuyNow;
   String? get guestEmail => _guestEmail;
   int? get needChange => _needChange;
-  double? get cashOnDeliveryAmountToPay => _cashOnDeliveryAmountToPay;
   String? get userCpf => _userCpf;
 
   PlaceOrderBodyModel.fromJson(Map<String, dynamic> json) {
