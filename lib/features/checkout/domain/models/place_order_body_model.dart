@@ -4,6 +4,7 @@ import 'package:sixam_mart/features/item/domain/models/item_model.dart';
 
 class PlaceOrderBodyModel {
   List<OnlineCart>? _cart;
+  double? _cashOnDeliveryAmount;
   double? _couponDiscountAmount;
   double? _orderAmount;
   String? _orderType;
@@ -37,11 +38,11 @@ class PlaceOrderBodyModel {
   int? _isBuyNow;
   String? _guestEmail;
   int? _needChange;
-  double? _cashOnDeliveryAmountToPay;
   String? _userCpf;
 
   PlaceOrderBodyModel({
     required List<OnlineCart> cart,
+    this.cashOnDeliveryAmountToPay = 0.0,
     required double? couponDiscountAmount,
     required String? couponCode,
     required double orderAmount,
@@ -75,12 +76,12 @@ class PlaceOrderBodyModel {
     required int isBuyNow,
     required String? guestEmail,
     int? needChange,
-    double? cashOnDeliveryAmountToPay,
     String? userCpf,
 
   }) {
     _cart = cart;
     _couponDiscountAmount = couponDiscountAmount;
+    _cashOnDeliveryAmountToPay = cashOnDeliveryAmountToPay;
     _orderAmount = orderAmount;
     _orderType = orderType;
     _paymentMethod = paymentMethod;
@@ -113,11 +114,11 @@ class PlaceOrderBodyModel {
     _isBuyNow = isBuyNow;
     _guestEmail = guestEmail;
     _needChange = needChange;
-    _cashOnDeliveryAmountToPay = cashOnDeliveryAmountToPay;
     _userCpf = userCpf;
   }
 
   List<OnlineCart>? get cart => _cart;
+  double? get cashOnDeliveryAmountToPay => _cashOnDeliveryAmountToPay;
   double? get couponDiscountAmount => _couponDiscountAmount;
   double? get orderAmount => _orderAmount;
   String? get orderType => _orderType;
@@ -160,6 +161,7 @@ class PlaceOrderBodyModel {
         _cart!.add(OnlineCart.fromJson(v));
       });
     }
+
     _couponDiscountAmount = double.parse(json['coupon_discount_amount'] ?? 0.toString());
     _orderAmount = double.parse(json['order_amount'].toString());
     _orderType = json['order_type'];

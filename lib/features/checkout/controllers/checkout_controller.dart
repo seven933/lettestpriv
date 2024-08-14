@@ -75,7 +75,7 @@ class CheckoutController extends GetxController implements GetxService {
   bool get isLoading => _isLoading;
 
   double _cashOnDeliveryAmount = 0.0;
-  double get cashOnDeliveryAmount => 0.0;
+  double get cashOnDeliveryAmount => _cashOnDeliveryAmount;
 
   AddressModel? _guestAddress;
   AddressModel? get guestAddress => _guestAddress;
@@ -538,7 +538,7 @@ class CheckoutController extends GetxController implements GetxService {
       }
 
       if(placeOrderBody.paymentMethod == 'cash_on_delivery'){
-        Get.toNamed(RouteHelper.getOrderSuccessRoute(orderID, '74999874668'));
+        Get.toNamed(RouteHelper.getOrderSuccessRoute(orderID, Get.find<ProfileController>().userInfoModel!.phone));
       }
 
     } else {

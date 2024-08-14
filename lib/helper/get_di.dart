@@ -167,7 +167,7 @@ import 'package:sixam_mart/features/language/domain/models/language_model.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
-
+import 'package:sixam_mart/features/payment/controllers/cash_on_delivery_controller.dart';
 // PIX
 import 'package:sixam_mart/features/pix/domain/repositories/pix_repository_interface.dart';
 import 'package:sixam_mart/features/pix/domain/repositories/pix_repository.dart';
@@ -419,7 +419,6 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => LoyaltyController(loyaltyServiceInterface: Get.find()));
   Get.lazyPut(() => VerificationController(verificationServiceInterface: Get.find()));
   Get.lazyPut(() => PixController(pixServiceInterface: Get.find()));
-  
 
   /// Retrieving localized data
   Map<String, Map<String, String>> languages = {};
