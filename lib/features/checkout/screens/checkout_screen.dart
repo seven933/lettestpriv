@@ -336,7 +336,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
             DateTime scheduleStartDate = DateTime.now();
             DateTime scheduleEndDate = DateTime.now();
             bool isGuestLogIn = AuthHelper.isGuestLoggedIn(); // verifica se está logado como guest
-            
+             
             if(checkoutController.timeSlots == null || checkoutController.timeSlots!.isEmpty) {
               isAvailable = false; // Item não está disponível
             }else { // verifica datas
@@ -549,7 +549,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   isBuyNow: widget.fromCart ? 0 : 1, 
                   guestEmail: isGuestLogIn ? finalAddress.email : null,
                   needChange: 1,
-                  cashOnDeliveryAmountToPay: 50,
+                  cashOnDeliveryAmountToPay: Get.find<CheckoutController>().cashOnDeliveryAmount,
                   userCpf: Get.find<ProfileController>().userInfoModel!.cpf,
                 );
 
