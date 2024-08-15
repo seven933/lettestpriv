@@ -549,7 +549,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   isBuyNow: widget.fromCart ? 0 : 1, 
                   guestEmail: isGuestLogIn ? finalAddress.email : null,
                   needChange: 1,
-                  cashOnDeliveryAmountToPay: Get.find<CheckoutController>().cashOnDeliveryAmount,
+                  cashOnDeliveryAmount: Get.find<CheckoutController>().cashOnDeliveryAmount,
                   userCpf: Get.find<ProfileController>().userInfoModel!.cpf,
                 );
 
