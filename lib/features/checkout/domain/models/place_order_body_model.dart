@@ -117,7 +117,6 @@ class PlaceOrderBodyModel {
   }
 
   List<OnlineCart>? get cart => _cart;
-  double? get cashOnDeliveryAmountToPay => _cashOnDeliveryAmount;
   double? get couponDiscountAmount => _couponDiscountAmount;
   double? get orderAmount => _orderAmount;
   String? get orderType => _orderType;
@@ -194,7 +193,7 @@ class PlaceOrderBodyModel {
     _isBuyNow = int.parse(json['is_buy_now'].toString());
     _guestEmail = json['contact_person_email'];
     _needChange = json['need_change'] != null ? int.parse(json['need_change'].toString()) : 0;
-    _cashOnDeliveryAmount = json['cash_on_delivery_amount'] != null ? double.parse(json['cash_on_delivery_amount'].toString()) : 0.0;
+    cashOnDeliveryAmount = json['cash_on_delivery_amount'] != null ? double.parse(json['cash_on_delivery_amount'].toString()) : 0.0;
     _userCpf = json['user_cpf'] != null ? json['user_cpf'].toString() : null; 
 
   }
@@ -261,7 +260,7 @@ class PlaceOrderBodyModel {
       data['contact_person_email'] = _guestEmail!;
     }
     data['need_change'] = _needChange.toString();
-    data['cash_on_delivery_amount'] = _cashOnDeliveryAmount.toString();
+    data['cash_on_delivery_amount'] = cashOnDeliveryAmount.toString();
     data['user_cpf'] = _userCpf.toString();
     return data;
   }
