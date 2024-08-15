@@ -42,7 +42,7 @@ class PlaceOrderBodyModel {
 
   PlaceOrderBodyModel({
     required List<OnlineCart> cart,
-    this.cashOnDeliveryAmountToPay = 0.0,
+    this._cashOnDeliveryAmount = 0.0,
     required double? couponDiscountAmount,
     required String? couponCode,
     required double orderAmount,
@@ -81,7 +81,7 @@ class PlaceOrderBodyModel {
   }) {
     _cart = cart;
     _couponDiscountAmount = couponDiscountAmount;
-    _cashOnDeliveryAmountToPay = cashOnDeliveryAmountToPay;
+    _cashOnDeliveryAmount = _cashOnDeliveryAmount;
     _orderAmount = orderAmount;
     _orderType = orderType;
     _paymentMethod = paymentMethod;
@@ -118,7 +118,7 @@ class PlaceOrderBodyModel {
   }
 
   List<OnlineCart>? get cart => _cart;
-  double? get cashOnDeliveryAmountToPay => _cashOnDeliveryAmountToPay;
+  double? get cashOnDeliveryAmountToPay => _cashOnDeliveryAmount;
   double? get couponDiscountAmount => _couponDiscountAmount;
   double? get orderAmount => _orderAmount;
   String? get orderType => _orderType;
@@ -195,7 +195,7 @@ class PlaceOrderBodyModel {
     _isBuyNow = int.parse(json['is_buy_now'].toString());
     _guestEmail = json['contact_person_email'];
     _needChange = json['need_change'] != null ? int.parse(json['need_change'].toString()) : 0;
-    _cashOnDeliveryAmountToPay = json['cash_on_delivery_amount_to_pay'] != null ? double.parse(json['cash_on_delivery_amount_to_pay'].toString()) : 0.0;
+    _cashOnDeliveryAmount = json['cash_on_delivery_amount'] != null ? double.parse(json['cash_on_delivery_amount'].toString()) : 0.0;
     _userCpf = json['user_cpf'] != null ? json['user_cpf'].toString() : null; 
 
   }
@@ -262,7 +262,7 @@ class PlaceOrderBodyModel {
       data['contact_person_email'] = _guestEmail!;
     }
     data['need_change'] = _needChange.toString();
-    data['cash_on_delivery_amount_to_pay'] = _cashOnDeliveryAmountToPay.toString();
+    data['cash_on_delivery_amount'] = _cashOnDeliveryAmount.toString();
     data['user_cpf'] = _userCpf.toString();
     return data;
   }
