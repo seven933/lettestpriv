@@ -4,7 +4,7 @@ import 'package:sixam_mart/features/item/domain/models/item_model.dart';
 
 class PlaceOrderBodyModel {
   List<OnlineCart>? _cart;
-  double? _cashOnDeliveryAmount;
+  double? cashOnDeliveryAmount;
   double? _couponDiscountAmount;
   double? _orderAmount;
   String? _orderType;
@@ -42,7 +42,7 @@ class PlaceOrderBodyModel {
 
   PlaceOrderBodyModel({
     required List<OnlineCart> cart,
-    this._cashOnDeliveryAmount = 0.0,
+    this.cashOnDeliveryAmount = 0.0,
     required double? couponDiscountAmount,
     required String? couponCode,
     required double orderAmount,
@@ -81,7 +81,6 @@ class PlaceOrderBodyModel {
   }) {
     _cart = cart;
     _couponDiscountAmount = couponDiscountAmount;
-    _cashOnDeliveryAmount = _cashOnDeliveryAmount;
     _orderAmount = orderAmount;
     _orderType = orderType;
     _paymentMethod = paymentMethod;
