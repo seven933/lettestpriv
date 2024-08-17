@@ -18,4 +18,11 @@ class PixService implements PixServiceInterface{
 		return await pixRepositoryInterface.createPixPayment(data);
 
 	}
+
+	@override
+	Future<void> createCardPayment(String data) async {
+
+		await pixRepositoryInterface.createCardPayment(data);
+
+	}
 }

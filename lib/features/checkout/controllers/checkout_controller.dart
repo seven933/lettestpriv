@@ -419,7 +419,8 @@ class CheckoutController extends GetxController implements GetxService {
   }
 
   void stopLoader({bool canUpdate = true}) {
-    _isLoading = false;
+    _i
+    sLoading = false;
     if(canUpdate) {
       update();
     }
@@ -474,7 +475,7 @@ class CheckoutController extends GetxController implements GetxService {
 
     }
 
-    update();
+    update(); 
 
     return orderID;
   }
@@ -511,26 +512,13 @@ class CheckoutController extends GetxController implements GetxService {
 
         Get.toNamed(RouteHelper.getPixPaymentScreen(pixKey, placeOrderBody.orderAmount ?? 0.0));
 
-      } else if(placeOrderBody.paymentMethod == 'credit_card'){
+      } else if(placeOrderBody.paymentMethod == 'credit_card' || placeOrderBody.paymentMethod == 'debit_card'){
 
         if(_selectedCreditCard != null){
 
-//          final mp = MP('your_public_key', 'your_access_token');
-
-  /*        final cardData = {
-            'cardNumber': _selectedCreditCard.nickname.,
-            'expirationMonth': _expirationMonthController.text,
-            'expirationYear': _expirationYearController.text,
-            'securityCode': _securityCodeController.text,
-            'cardholder': {
-              'name': _cardholderNameController.text,
-              'identification': {
-                'type': _docTypeController.text,
-                'number': _docNumberController.text,
-              },
-          };
-    */      
-
+            await pixController.createCardPayment(jsonEncode(selectedCreditCard);
+            Get.toNamed(RouteHelper.getOrderSuccessRoute(orderID, Get.find<ProfileController>().userInfoModel!.phone));
+   
         }
         
 

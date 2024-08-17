@@ -15,6 +15,7 @@ class AppConstants {
 
   static const String baseUrl = 'https://anunce.com';
   static const String cardBrandsList = '/api/v1/card-brands/list/';
+  static const String cardPayment = '/api/v1/mercadopago/card-payment';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
   static const String storeItemUri = '/api/v1/items/latest';

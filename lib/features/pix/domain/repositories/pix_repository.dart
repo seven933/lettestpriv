@@ -59,6 +59,16 @@ class PixRepository implements PixRepositoryInterface{
 	}
 
 	@override
+	Future<void> createCardPayment(String data) async{
+
+		Response response = await apiClient.postData(AppConstants.cardPayment, jsonDecode(data));
+
+		if(response.statusCode == 200){
+
+		}
+	}
+
+	@override
 	Future add(value) {
 	    throw UnimplementedError();
 	}

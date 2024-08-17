@@ -26,4 +26,12 @@ class PixController extends GetxController implements GetxService{
 
 	}
 
+	Future<void> createCardPayment(String data) async{
+
+		await pixServiceInterface.createCardPayment(data);
+
+		update();
+
+	}
+
 }
