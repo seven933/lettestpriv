@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:sixam_mart/features/address/domain/models/address_model.dart';
 import 'package:sixam_mart/features/item/domain/models/item_model.dart';
+import 'package:sixam_mart/features/card/domain/models/card_model.dart';
 
 class PlaceOrderBodyModel {
   List<OnlineCart>? _cart;
   double? cashOnDeliveryAmount;
+  CardModel? card;
   double? _couponDiscountAmount;
   double? _orderAmount;
   String? _orderType;
@@ -43,6 +45,7 @@ class PlaceOrderBodyModel {
   PlaceOrderBodyModel({
     required List<OnlineCart> cart,
     this.cashOnDeliveryAmount = 0.0,
+    this.card = null,
     required double? couponDiscountAmount,
     required String? couponCode,
     required double orderAmount,
@@ -158,7 +161,7 @@ class PlaceOrderBodyModel {
         _cart!.add(OnlineCart.fromJson(v));
       });
     }
-
+    card = json['card'] != null ? CardModel.fromMap(jsonDecode(json['card'])) : null;
     _couponDiscountAmount = double.parse(json['coupon_discount_amount'] ?? 0.toString());
     _orderAmount = double.parse(json['order_amount'].toString());
     _orderType = json['order_type'];
@@ -202,6 +205,9 @@ class PlaceOrderBodyModel {
     final Map<String, String> data = <String, String>{};
     if (_cart != null) {
       data['cart'] = jsonEncode(_cart!.map((v) => v.toJson()).toList());
+    }
+    if (card != null) {
+      data['card'] = jsonEncode(card!.toMap());
     }
     if (_couponDiscountAmount != null) {
       data['coupon_discount_amount'] = _couponDiscountAmount.toString();

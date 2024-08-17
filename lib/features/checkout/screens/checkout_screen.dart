@@ -563,6 +563,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   //checkoutController.placeOrder(placeOrderBody, checkoutController.store!.zoneId, total, maxCodOrderAmount, widget.fromCart, _isCashOnDeliveryActive!);
                 //}
                 checkoutController.placeOrderToCashOnDelivery(placeOrderBody, widget.fromCart);
+                
 
               }else{ // Faz pedido de prescrito
 
