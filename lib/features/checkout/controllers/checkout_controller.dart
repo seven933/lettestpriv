@@ -515,7 +515,7 @@ class CheckoutController extends GetxController implements GetxService {
 
         if(_selectedCreditCard != null){
 
-            await pixController.createCardPayment(jsonEncode(selectedCreditCard);
+            await pixController.createCardPayment(jsonEncode(selectedCreditCard));
             Get.toNamed(RouteHelper.getOrderSuccessRoute(orderID, Get.find<ProfileController>().userInfoModel!.phone));
    
         }
