@@ -419,8 +419,7 @@ class CheckoutController extends GetxController implements GetxService {
   }
 
   void stopLoader({bool canUpdate = true}) {
-    _i
-    sLoading = false;
+    _isLoading = false;
     if(canUpdate) {
       update();
     }
@@ -501,9 +500,9 @@ class CheckoutController extends GetxController implements GetxService {
         
       }
 
-      if(placeOrderBody.paymentMethod == 'pix'){
+      PixController pixController = Get.find<PixController>();
 
-        PixController pixController = Get.find<PixController>();
+      if(placeOrderBody.paymentMethod == 'pix'){
 
         String pixKey = await pixController.createPixPayment(
           jsonEncode(CreatePixPaymentModel(transactionAmount: placeOrderBody.orderAmount ?? 0.0, userCpf: placeOrderBody.userCpf ?? '', orderId: orderID)),
