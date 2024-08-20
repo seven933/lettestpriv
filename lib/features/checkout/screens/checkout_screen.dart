@@ -518,7 +518,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   distance: checkoutController.distance,
                   scheduleAt: !checkoutController.store!.scheduleOrder! ? null : (checkoutController.selectedDateSlot == 0
                       && checkoutController.selectedTimeSlot == 0) ? null : DateConverter.dateToDateAndTime(scheduleEndDate),
-                  orderAmount: total, 
+                  orderAmount: total,  
                   orderNote: checkoutController.noteController.text, orderType: checkoutController.orderType,
                   paymentMethod: checkoutController.paymentMethodIndex == 0 ? 'cash_on_delivery'
                                 : checkoutController.paymentMethodIndex == 1 ? 'wallet'
@@ -526,7 +526,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                 : checkoutController.paymentMethodIndex == 3 ? 'credit_card_on_delivery' 
                                 : checkoutController.paymentMethodIndex == 4 ? 'debit_card_on_delivery'
                                 : checkoutController.paymentMethodIndex == 5 ? 'pix' 
-                                : checkoutController.paymentMethodIndex == 6 || checkoutController.paymentMethodIndex == 7 ? 'digital_payment'
+                                : checkoutController.paymentMethodIndex == 6 ? 'credit_card' 
+                                : checkoutController.paymentMethodIndex == 7 ? 'debit_card'
                                 : 'offline_payment',
                   couponCode: (Get.find<CouponController>().discount! > 0 || (Get.find<CouponController>().coupon != null
                       && Get.find<CouponController>().freeDelivery)) ? Get.find<CouponController>().coupon!.code : null,
