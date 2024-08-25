@@ -508,7 +508,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                       },
                                     ),
                                   ),
-                                  Flexible(
+                                  /*Flexible(
                                     child: PaymentButtonNew(
                                       icon: Images.cards,
                                       title: 'credit_card'.tr,
@@ -533,7 +533,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                         _showCardSelectionDialog(checkoutController);
                                       },
                                     ),
-                                  ),
+                                  ),*/
                                 ],
                               )
                             : Column(
