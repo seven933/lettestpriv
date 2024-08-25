@@ -574,7 +574,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                           3,
                                       onTap: () {
                                         checkoutController.setPaymentMethod(3);
-                                        _showCardOnDeliverySelectionDialog(isCreditCard: true);
+                                        //_showCardOnDeliverySelectionDialog(isCreditCard: true);
                                       },
                                     ),
                                   ),
@@ -587,7 +587,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                           4,
                                       onTap: () {
                                         checkoutController.setPaymentMethod(4);
-                                        _showCardOnDeliverySelectionDialog(isCreditCard: false);
+                                        //_showCardOnDeliverySelectionDialog(isCreditCard: false);
                                       },
                                     ),
                                   ),
