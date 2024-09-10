@@ -55,7 +55,7 @@ class BottomSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
       child: Column(children: [
 
-        isDesktop ? pricingView(context: context, takeAway: takeAway) : const SizedBox(),
+        const SizedBox(),
 
         const SizedBox(height: Dimensions.paddingSizeSmall),
 
@@ -126,10 +126,7 @@ class BottomSection extends StatelessWidget {
           ]),
         ),
 
-        ResponsiveHelper.isDesktop(context) ? Padding(
-          padding: const EdgeInsets.only(top: Dimensions.paddingSizeLarge),
-          child: checkoutButton,
-        ) : const SizedBox(),
+        const SizedBox(),
 
       ]),
     );

@@ -212,11 +212,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
 
           return (checkoutController.distance != null && checkoutController.store != null) ? Column(
             children: [
-              ResponsiveHelper.isDesktop(context) ? Container(
-                height: 64,
-                color: Theme.of(context).primaryColor.withOpacity(0.10),
-                child: Center(child: Text('checkout'.tr, style: robotoMedium)),
-              ) : const SizedBox(),
+              const SizedBox(),
 
               Expanded(child: SingleChildScrollView(
                 controller: _scrollController,
@@ -281,7 +277,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                 )),
               )),
 
-              ResponsiveHelper.isDesktop(context) ? const SizedBox() : Container(
+              Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
                   boxShadow: [BoxShadow(color: Theme.of(context).primaryColor.withOpacity(0.1), blurRadius: 10)],

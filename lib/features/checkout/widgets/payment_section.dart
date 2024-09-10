@@ -7,6 +7,7 @@ import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/features/checkout/widgets/payment_method_bottom_sheet.dart';
+import 'package:sixam_mart/features/checkout/widgets/card_brand_selection.dart';
 
 class PaymentSection extends StatelessWidget {
 
@@ -66,12 +67,7 @@ class PaymentSection extends StatelessWidget {
         ]) : const SizedBox() : InkWell(
 
           onTap: () {
-            if(ResponsiveHelper.isDesktop(context) && checkoutController.paymentMethodIndex == -1){
-              Get.dialog(Dialog(backgroundColor: Colors.transparent, child: PaymentMethodBottomSheet(
-                isCashOnDeliveryActive: isCashOnDeliveryActive, isDigitalPaymentActive: isDigitalPaymentActive,
-                isWalletActive: isWalletActive, storeId: storeId, totalPrice: total, isOfflinePaymentActive: isOfflinePaymentActive,
-              )));
-            }
+            
           },
 
           child: Row(children: [
@@ -121,12 +117,16 @@ class PaymentSection extends StatelessWidget {
                 ) : const SizedBox(),
               ])
             ),
+            checkoutController.paymentMethodIndex == 3 || checkoutController.paymentMethodIndex == 4
+              ? CardSelectionWidget(checkoutController: checkoutController)
+              : const SizedBox(),
+
             checkoutController.paymentMethodIndex != -1 ? PriceConverter.convertAnimationPrice(
               checkoutController.viewTotalPrice,
               textStyle: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).primaryColor),
             ) : const SizedBox(),
 
-            SizedBox(width: ResponsiveHelper.isDesktop(context) ? Dimensions.paddingSizeSmall : 0),
+            SizedBox(width: 0),
             const SizedBox(),
           ]),
         ),
