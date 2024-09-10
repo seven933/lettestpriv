@@ -1,3 +1,4 @@
+
 name: Flutter CI
 
 on:
@@ -36,7 +37,7 @@ jobs:
       run: flutter build apk --release --no-shrink
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # Atualizado para v3
       with:
         name: apk
         path: build/app/outputs/flutter-apk/app-release.apk
