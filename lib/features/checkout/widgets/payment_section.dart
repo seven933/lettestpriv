@@ -9,6 +9,9 @@ import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/features/checkout/widgets/payment_method_bottom_sheet.dart';
 import 'package:sixam_mart/features/checkout/widgets/card_brand_selection_widget.dart';
 
+/**
+*
+*/
 class PaymentSection extends StatelessWidget {
 
   final int? storeId;
