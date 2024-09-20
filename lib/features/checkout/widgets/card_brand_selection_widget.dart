@@ -15,21 +15,24 @@ class CardSelectionWidget extends StatelessWidget {
       ? Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Select Card Type', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall)),
+            Text(
+              'Select Card Type', 
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: Dimensions.fontSizeSmall, fontWeight: FontWeight.w500),
+            ),
             const SizedBox(height: Dimensions.paddingSizeSmall),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 _buildCardOption(Images.mastercard, 'Mastercard', () {
-                 // checkoutController.selectCard('Mastercard');
+                  // checkoutController.selectCard('Mastercard');
                 }),
                 const SizedBox(width: Dimensions.paddingSizeSmall),
                 _buildCardOption(Images.visa, 'Visa', () {
-                 // checkoutController.selectCard('Visa');
+                  // checkoutController.selectCard('Visa');
                 }),
                 const SizedBox(width: Dimensions.paddingSizeSmall),
                 _buildCardOption(Images.mastercard, 'Amex', () {
-                  //checkoutController.selectCard('Amex');
+                  // checkoutController.selectCard('Amex');
                 }),
               ],
             ),
@@ -44,7 +47,10 @@ class CardSelectionWidget extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(image, width: 40, height: 40),
-          Text(label, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall)),
+          Text(
+            label, 
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
+          ),
         ],
       ),
     );
