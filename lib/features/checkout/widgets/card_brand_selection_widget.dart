@@ -23,15 +23,15 @@ class CardSelectionWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _buildCardOption(Images.mastercard, 'Mastercard', () {
+                _buildCardOption(context, Images.mastercard, 'Mastercard', () {
                   // checkoutController.selectCard('Mastercard');
                 }),
                 const SizedBox(width: Dimensions.paddingSizeSmall),
-                _buildCardOption(Images.visa, 'Visa', () {
+                _buildCardOption(context, Images.visa, 'Visa', () {
                   // checkoutController.selectCard('Visa');
                 }),
                 const SizedBox(width: Dimensions.paddingSizeSmall),
-                _buildCardOption(Images.mastercard, 'Amex', () {
+                _buildCardOption(context, Images.mastercard, 'Amex', () {
                   // checkoutController.selectCard('Amex');
                 }),
               ],
@@ -41,7 +41,7 @@ class CardSelectionWidget extends StatelessWidget {
       : const SizedBox();
   }
 
-  Widget _buildCardOption(String image, String label, VoidCallback onTap) {
+  Widget _buildCardOption(BuildContext context, String image, String label, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       child: Column(
