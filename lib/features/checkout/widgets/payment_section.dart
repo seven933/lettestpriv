@@ -120,6 +120,7 @@ class PaymentSection extends StatelessWidget {
                 ) : const SizedBox(),
               ])
             ),
+            const SizedBox,
             checkoutController.paymentMethodIndex == 3 || checkoutController.paymentMethodIndex == 4
               ? CardSelectionWidget(checkoutController: checkoutController)
               : const SizedBox(),
