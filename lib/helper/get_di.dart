@@ -167,8 +167,18 @@ import 'package:sixam_mart/features/language/domain/models/language_model.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
+
+// Card
+import 'package:sixam_mart/features/card/controllers/card_brand_controller.dart';
+import 'package:sixam_mart/features/card/repositories/card_brand_repository.dart';
+import 'package:sixam_mart/features/card/repositories/card_brand_repository_interface.dart';
+import 'package:sixam_mart/features/card/services/card_brand_service.dart';
+import 'package:sixam_mart/features/card/services/card_brand_service_interface.dart';
+
+// Payment
 import 'package:sixam_mart/features/payment/controllers/cash_on_delivery_controller.dart';
-// PIX
+
+// Pix
 import 'package:sixam_mart/features/pix/domain/repositories/pix_repository_interface.dart';
 import 'package:sixam_mart/features/pix/domain/repositories/pix_repository.dart';
 import 'package:sixam_mart/features/pix/domain/services/pix_service_interface.dart';
@@ -275,6 +285,9 @@ Future<Map<String, Map<String, String>>> init() async {
   LoyaltyRepositoryInterface loyaltyRepositoryInterface = LoyaltyRepository(apiClient: Get.find());
   Get.lazyPut(() => loyaltyRepositoryInterface);
 
+  CardBrandRepositoryInterface cardBrandRepositoryInterface = CardBrandRepository(apiClient: Get.find());
+  Get.lazyPut(() => cardBrandRepositoryInterface);
+
   CartRepositoryInterface cartRepositoryInterface = CartRepository(apiClient: Get.find(), sharedPreferences: Get.find());
   Get.lazyPut(() => cartRepositoryInterface);
 
@@ -371,6 +384,9 @@ Future<Map<String, Map<String, String>>> init() async {
   LoyaltyServiceInterface loyaltyServiceInterface = LoyaltyService(loyaltyRepositoryInterface: Get.find());
   Get.lazyPut(() => loyaltyServiceInterface);
 
+  CardBrandServiceInterface cardBrandServiceInterface = CardBrandService(cardBrandRepositoryInterface: Get.find());
+  Get.lazyPut(() => cardBrandServiceInterface);
+
   CartServiceInterface cartServiceInterface = CartService(cartRepositoryInterface: Get.find());
   Get.lazyPut(() => cartServiceInterface);
 
@@ -418,6 +434,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => CategoryController(categoryServiceInterface: Get.find()));
   Get.lazyPut(() => LoyaltyController(loyaltyServiceInterface: Get.find()));
   Get.lazyPut(() => VerificationController(verificationServiceInterface: Get.find()));
+  Get.lazyPut(() => CardBrandController(cardBrandServiceInterface: Get.find()));
   Get.lazyPut(() => PixController(pixServiceInterface: Get.find()));
 
   /// Retrieving localized data

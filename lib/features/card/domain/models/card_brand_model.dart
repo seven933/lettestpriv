@@ -1,37 +1,29 @@
 import 'dart:convert';
 
-class CardBrandModel{
-	
-	String id;
-	String name;
-	String image;
+class CardBrandModel {
+  String? code;
+  String? name;
+  String? image;
 
-	CardBrandModel({this.id, this.name, this.image} map);
+  CardBrandModel({this.code, this.name, this.image});
 
-	factory CardBrandModel.fromMap(Map<String, dynamic>){
+  factory CardBrandModel.fromMap(Map<String, dynamic> map) {
+    return CardBrandModel(
+      code: map['code'],
+      name: map['name'],
+      image: map['image'],
+    );
+  }
 
-		return CardModel(
+  factory CardBrandModel.fromJson(String source) => CardBrandModel.fromMap(json.decode(source));
 
-			id: map['id'],
-			name: map['name'],
-			image: map['image'],
+  Map<String, dynamic> toMap() {
+    return {
+      'code': code,
+      'name': name,
+      'image': image,
+    };
+  }
 
-		);
-	}
-
-	factory CardBrandModel.fromJson(String source) => CardBrandModel.fromMap(json.decode(source));
-
-	Map<String, dynamic> toMap(){
-
-		return {
-			'id': id,
-			'name': name,
-			'image': image,
-		};
-
-	}
-
-	String toJson() => json.encode(toMap);
-
-
+  String toJson() => json.encode(toMap());
 }
