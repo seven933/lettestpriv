@@ -170,10 +170,10 @@ import 'package:get/get.dart';
 
 // Card
 import 'package:sixam_mart/features/card/controllers/card_brand_controller.dart';
-import 'package:sixam_mart/features/card/repositories/card_brand_repository.dart';
-import 'package:sixam_mart/features/card/repositories/card_brand_repository_interface.dart';
-import 'package:sixam_mart/features/card/services/card_brand_service.dart';
-import 'package:sixam_mart/features/card/services/card_brand_service_interface.dart';
+import 'package:sixam_mart/features/card/domain/repositories/card_brand_repository.dart';
+import 'package:sixam_mart/features/card/domain/repositories/card_brand_repository_interface.dart';
+import 'package:sixam_mart/features/card/domain/services/card_brand_service.dart';
+import 'package:sixam_mart/features/card/domain/services/card_brand_service_interface.dart';
 
 // Payment
 import 'package:sixam_mart/features/payment/controllers/cash_on_delivery_controller.dart';
