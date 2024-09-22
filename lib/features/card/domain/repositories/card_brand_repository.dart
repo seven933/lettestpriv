@@ -14,15 +14,16 @@ class CardBrandRepository implements CardBrandRepositoryInterface{
 	@override
 	Future<List<CardBrandModel?>> getAcceptedCardBrandList() async {
     	
-    	CardBrandModel? cardBrandModel;
+    	 List<CardBrandModel?> cardBrandList = [];
 
-    	Response response = await apiClient.getData(AppConstants.cardBrandListUri);
+	    Response response = await apiClient.getData(AppConstants.cardBrandListUri);
 
-    	if(response.statusCode == 200){
-    		cardBrandModel = CardBrandModel.fromJson(response.body); 
-    	}
+	    if(response.statusCode == 200 && response.body != null) {
+	      List<dynamic> body = response.body;
+	      cardBrandList = body.map((item) => CardBrandModel.fromMap(item)).toList();
+	    }
 
-    	return cardBrandModel;
+	    return cardBrandList;
     
   	}
 
