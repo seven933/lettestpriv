@@ -14,7 +14,7 @@ class CardBrandRepository implements CardBrandRepositoryInterface{
 	@override
 	Future<List<CardBrandModel?>> getAcceptedCardBrandList() async {
     	
-    	CardBrandModel? CardBrandModel;
+    	CardBrandModel? cardBrandModel;
 
     	Response response = await apiClient.getData(AppConstants.cardBrandListUri);
 
