@@ -6,7 +6,7 @@ class CardBrandController extends GetxController implements GetxService{
 
 	final CardBrandServiceInterface cardBrandServiceInterface;
 
-	CardBrandController({this.cardBrandServiceInterface});
+	CardBrandController({required this.cardBrandServiceInterface});
 
 	List<CardBrandModel?> _acceptedCardBrandList;
 	List<CardBrandModel?> get acceptedCardBrandList => _acceptedCardBrandList;

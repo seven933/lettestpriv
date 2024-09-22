@@ -8,7 +8,7 @@ class CardBrandRepository implements CardBrandRepositoryInterface{
 
 	final ApiClient apiClient;
 
-	CardBrandRepository({this.apiClient});
+	CardBrandRepository({required this.apiClient});
 
 
 	@overried

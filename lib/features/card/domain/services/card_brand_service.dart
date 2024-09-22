@@ -6,7 +6,7 @@ class CardBrandService implements CardBrandServiceInterface{
 
 	final CardBrandRepositoryInterface cardBrandRepositoryInterface;
 
-	CardBrandService({this.cardBrandRepositoryInterface});
+	CardBrandService({required this.cardBrandRepositoryInterface});
 
 	@override
 	Future<List<CardBrandModel?>> getAcceptedCardBrandList() async{
