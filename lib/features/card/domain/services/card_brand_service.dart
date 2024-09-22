@@ -11,7 +11,7 @@ class CardBrandService implements CardBrandServiceInterface{
 	@override
 	Future<List<CardBrandModel?>> getAcceptedCardBrandList() async{
 
-		return await cardRepositoryInterface.getAcceptedCardBrandList();
+		return await cardBrandRepositoryInterface.getAcceptedCardBrandList();
 
 	}
 }
