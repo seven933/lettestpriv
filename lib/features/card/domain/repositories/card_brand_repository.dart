@@ -12,7 +12,7 @@ class CardBrandRepository implements CardBrandRepositoryInterface{
 
 
 	@overried
-	Future<List<CardModel?>> getAcceptedCardBrandList() async {
+	Future<List<CardBrandModel?>> getAcceptedCardBrandList() async {
     	
     	CardBrandModel? CardBrandModel;
 
