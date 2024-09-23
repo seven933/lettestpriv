@@ -11,11 +11,12 @@ class CardBrandController extends GetxController implements GetxService{
 	List<CardBrandModel?> _acceptedCardBrandList = [];
 	List<CardBrandModel?> get acceptedCardBrandList => _acceptedCardBrandList;
 
-	Future<void> getAcceptedCardBrandList() async{
-
-		_acceptedCardBrandList = await cardBrandServiceInterface.getAcceptedCardBrandList();
-    	update(); 
-
+	Future<List<CardBrandModel?>> getAcceptedCardBrandList() async {
+	    
+	    _acceptedCardBrandList = await cardBrandServiceInterface.getAcceptedCardBrandList();
+	    update();
+	    return _acceptedCardBrandList; 
+	
 	}
 
 
