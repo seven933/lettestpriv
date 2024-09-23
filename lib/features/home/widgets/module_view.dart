@@ -18,10 +18,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/home/widgets/banner_view.dart';
 import 'package:sixam_mart/features/home/widgets/popular_store_view.dart';
+import 'package:sixam_mart/features/card/controllers/card_brand_controller.dart';
+import 'package/sixam_mart/features/card/widgets/accepted_card_brand_widget.dart';
 
 class ModuleView extends StatelessWidget {
+
+  final List<CardBrandModel?> cardBrands;
+
   final SplashController splashController;
   const ModuleView({super.key, required this.splashController});
+
+  static Future<void> loadData() async{
+  
+    await cardBrands = Get.find<CardBrandController>().getAcceptedCardBrandList();
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -145,6 +157,8 @@ class ModuleView extends StatelessWidget {
           ],
         ) : const SizedBox() : AddressShimmer(isEnabled: AuthHelper.isLoggedIn() && locationController.addressList == null);
       }),
+
+      const AcceptedCardBrand(cardBrands),
 
       const PopularStoreView(isPopular: false, isFeatured: true),
 
