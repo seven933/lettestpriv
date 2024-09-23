@@ -19,7 +19,7 @@ import 'package:get/get.dart';
 import 'package:sixam_mart/features/home/widgets/banner_view.dart';
 import 'package:sixam_mart/features/home/widgets/popular_store_view.dart';
 import 'package:sixam_mart/features/card/controllers/card_brand_controller.dart';
-import 'package/sixam_mart/features/card/widgets/accepted_card_brand_widget.dart';
+import 'package:sixam_mart/features/card/widgets/accepted_card_brand_widget.dart';
 
 class ModuleView extends StatelessWidget {
 
