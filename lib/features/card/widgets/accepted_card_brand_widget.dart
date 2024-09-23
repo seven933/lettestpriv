@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sixam_mart/features/card/domain/models/card_brand_model.dart';
 
-
 class AcceptedCardBrand extends StatelessWidget {
-	
   final List<CardBrandModel?> cardBrands;
 
   const AcceptedCardBrand({Key? key, required this.cardBrands}) : super(key: key);
@@ -19,14 +16,14 @@ class AcceptedCardBrand extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Cartões Aceitos',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildCardBrandGrid(),
           ],
         ),
@@ -37,8 +34,8 @@ class AcceptedCardBrand extends StatelessWidget {
   Widget _buildCardBrandGrid() {
     return GridView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3, 
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
@@ -46,21 +43,27 @@ class AcceptedCardBrand extends StatelessWidget {
       itemCount: cardBrands.length,
       itemBuilder: (context, index) {
         final cardBrand = cardBrands[index];
-        if (cardBrand == null) return SizedBox.shrink();
+
+        // Verifica se a bandeira é nula
+        if (cardBrand == null) return const SizedBox.shrink();
+
+        // Trata valores nulos de imagem e nome
+        final imageUrl = cardBrand.image ?? 'https://static.vecteezy.com/system/resources/thumbnails/012/042/301/small_2x/warning-sign-icon-transparent-background-free-png.png'; // Imagem padrão
+        final name = cardBrand.name ?? 'Nome indisponível'; // Nome padrão
 
         return Column(
           children: [
             Expanded(
               child: Image.network(
-                cardBrand.image, 
+                imageUrl, 
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Icon(Icons.error), 
+                errorBuilder: (context, error, stackTrace) => const Icon(Icons.error), // Ícone de erro
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
-              cardBrand.name,
-              style: TextStyle(fontSize: 12),
+              name,
+              style: const TextStyle(fontSize: 12),
             ),
           ],
         );

@@ -152,22 +152,22 @@ class ModuleView extends StatelessWidget {
         ) : const SizedBox() : AddressShimmer(isEnabled: AuthHelper.isLoggedIn() && locationController.addressList == null);
       }),
 
-      return FutureBuilder<List<CardBrandModel?>>(
-        future: loadData(),  // Chama o método que retorna a lista
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(); // Mostra um indicador de carregamento enquanto a lista está sendo carregada
-          } else if (snapshot.hasError) {
-            return Text('Erro ao carregar dados');
-          } else if (snapshot.hasData && snapshot.data != null) {
-            // Recebe os dados do método loadData()
-            List<CardBrandModel?> cardBrands = snapshot.data!;
-            return AcceptedCardBrand(cardBrands: cardBrands);  // Passa os dados para o widget
-          } else {
-            return Text('Nenhuma bandeira de cartão encontrada.');
-          }
-        },
-      );
+      FutureBuilder<List<CardBrandModel?>>(
+          future: loadData(),  // Chama o método que retorna a lista
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator(); // Mostra um indicador de carregamento
+            } else if (snapshot.hasError) {
+              return const Text('Erro ao carregar dados');
+            } else if (snapshot.hasData && snapshot.data != null) {
+              // Recebe os dados do método loadData()
+              List<CardBrandModel?> cardBrands = snapshot.data!;
+              return AcceptedCardBrand(cardBrands: cardBrands);  // Passa os dados para o widget
+            } else {
+              return const Text('Nenhuma bandeira de cartão encontrada.');
+            }
+          },
+      ),
 
       const PopularStoreView(isPopular: false, isFeatured: true),
 
@@ -177,9 +177,9 @@ class ModuleView extends StatelessWidget {
   }
 
   static Future<List<CardBrandModel?>> loadData() async {
-      return await Get.find<CardBrandController>().getAcceptedCardBrandList();
+    return await Get.find<CardBrandController>().getAcceptedCardBrandList();
   }
-  
+
 }
 
 class ModuleShimmer extends StatelessWidget {
