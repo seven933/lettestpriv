@@ -32,14 +32,14 @@ class AcceptedCardBrand extends StatelessWidget {
     );
   }
 
-  Widget _buildCardBrandGrid() {
+    Widget _buildCardBrandGrid() {
     return SizedBox(
-        height: 50,
-        child: GridView.builder(
+      height: 80,
+      child: GridView.builder(
         shrinkWrap: true,
-        height: 50,
+        physics: const NeverScrollableScrollPhysics(),  // Desabilita o scroll, pois estamos definindo a altura
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, 
+          crossAxisCount: 3,  // Número de colunas
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
@@ -71,7 +71,7 @@ class AcceptedCardBrand extends StatelessWidget {
             ],
           );
         },
-      )
+      ),
     );
   }
 }
