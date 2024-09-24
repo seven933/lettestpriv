@@ -10,6 +10,7 @@ class AcceptedCardBrand extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
+      color: Colors.whit,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -34,6 +35,7 @@ class AcceptedCardBrand extends StatelessWidget {
   Widget _buildCardBrandGrid() {
     return GridView.builder(
       shrinkWrap: true,
+      height: 50,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3, 
