@@ -35,7 +35,7 @@ class AcceptedCardBrand extends StatelessWidget {
   Widget _buildCardBrandGrid() {
     return SizedBox(
         height: 50,
-        GridView.builder(
+        child: GridView.builder(
         shrinkWrap: true,
         height: 50,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
