@@ -25,7 +25,7 @@ class CardBrandRepository implements CardBrandRepositoryInterface{
 	    if(response.statusCode == 200 && response.body != null) {
 	      
 	      List<dynamic> body = response.body;
-	      cardBrandList = body.map((item) => CardBrandModel.fromMap(item)).toList();
+	      cardBrandList = body.entries.map((entry) => CardBrandModel.fromMap(entry.key, entry.value)).toList();;
 	    
 	    }
 
@@ -38,12 +38,12 @@ class CardBrandRepository implements CardBrandRepositoryInterface{
 
   		List<CardBrandModel?> cardBrandList = [];
 
-  		Response response = await apiClient.getData('${AppConstants.storeCardBrandListUri}$storeId')
+  		Response response = await apiClient.getData('${AppConstants.storeCardBrandListUri}$storeId');
 
   		if(response.statusCode == 200 && response.body != null){
 
   			List<dynamic> body = response.body;
-	      	cardBrandList = body.map((item) => CardBrandModel.fromMap(item)).toList();
+	      	cardBrandList = body.entries.map((entry) => CardBrandModel.fromMap(entry.key, entry.value)).toList();;
 
   		}
 

@@ -13,12 +13,15 @@ class AppConstants {
   static const int balanceInputLen = 10;
   static const String webHostedUrl = 'https://brunod8.sg-host.com';
 
+  static const String imagesPath = "https://www.anunce.com/public/images";
+
   static const String baseUrl = 'https://anunce.com';
   static const String cardBrandsList = '/api/v1/card-brand/list';
   static const String cardBrandListUri = '/api/v1/card-brand/list';
   static const String cardPayment = '/api/v1/mercadopago/card-payment';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
+  static const String storeCardBrandListUri = '/api/v1/card-brand/store';
   static const String storeItemUri = '/api/v1/items/latest';
   static const String popularItemUri = '/api/v1/items/popular';
   static const String reviewedItemUri = '/api/v1/items/most-reviewed';
