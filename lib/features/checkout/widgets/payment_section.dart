@@ -99,7 +99,7 @@ class PaymentSection extends StatelessWidget {
                       : checkoutController.paymentMethodIndex == 4 ? 'debit_card_on_delivery'.tr
                       : checkoutController.paymentMethodIndex == 5 ? 'pix'.tr
 
-                      : !ResponsiveHelper.isDesktop(context) ? 'select_payment_method'.tr : 'add_payment_method'.tr,
+                      : 'select_payment_method'.tr,
                   
                   style: robotoMedium.copyWith(
                     fontSize: Dimensions.fontSizeSmall,

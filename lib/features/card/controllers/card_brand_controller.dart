@@ -2,6 +2,9 @@ import 'package:get/get.dart';
 import 'package:sixam_mart/features/card/domain/services/card_brand_service_interface.dart';
 import 'package:sixam_mart/features/card/domain/models/card_brand_model.dart';
 
+/*
+* @author Giovane Neves
+*/
 class CardBrandController extends GetxController implements GetxService{
 
 	final CardBrandServiceInterface cardBrandServiceInterface;
@@ -17,6 +20,13 @@ class CardBrandController extends GetxController implements GetxService{
 	    update();
 	    return _acceptedCardBrandList; 
 	
+	}
+
+	Future<List<CardBrandModel?>> getAcceptedCardBrandListByStoreId(int storeId) async{
+
+		update();
+		return await cardBrandServiceInterface.getAcceptedCardBrandListByStoreId(storeId);
+
 	}
 
 
