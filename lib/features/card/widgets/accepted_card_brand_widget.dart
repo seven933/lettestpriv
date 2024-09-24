@@ -10,7 +10,7 @@ class AcceptedCardBrand extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
-      color: Colors.whit,
+      color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -33,43 +33,45 @@ class AcceptedCardBrand extends StatelessWidget {
   }
 
   Widget _buildCardBrandGrid() {
-    return GridView.builder(
-      shrinkWrap: true,
-      height: 50,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, 
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
-      itemCount: cardBrands.length,
-      itemBuilder: (context, index) {
-        final cardBrand = cardBrands[index];
+    return SizedBox(
+        height: 50,
+        GridView.builder(
+        shrinkWrap: true,
+        height: 50,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3, 
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        itemCount: cardBrands.length,
+        itemBuilder: (context, index) {
+          final cardBrand = cardBrands[index];
 
-        // Verifica se a bandeira é nula
-        if (cardBrand == null) return const SizedBox.shrink();
+          // Verifica se a bandeira é nula
+          if (cardBrand == null) return const SizedBox.shrink();
 
-        // Trata valores nulos de imagem e nome
-        final imageUrl = cardBrand.image ?? 'https://static.vecteezy.com/system/resources/thumbnails/012/042/301/small_2x/warning-sign-icon-transparent-background-free-png.png'; // Imagem padrão
-        final name = cardBrand.name ?? 'Nome indisponível'; // Nome padrão
+          // Trata valores nulos de imagem e nome
+          final imageUrl = cardBrand.image ?? 'https://static.vecteezy.com/system/resources/thumbnails/012/042/301/small_2x/warning-sign-icon-transparent-background-free-png.png'; // Imagem padrão
+          final name = cardBrand.name ?? 'Nome indisponível'; // Nome padrão
 
-        return Column(
-          children: [
-            Expanded(
-              child: Image.network(
-                imageUrl, 
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => const Icon(Icons.error), // Ícone de erro
+          return Column(
+            children: [
+              Expanded(
+                child: Image.network(
+                  imageUrl, 
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => const Icon(Icons.error), // Ícone de erro
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              name,
-              style: const TextStyle(fontSize: 12),
-            ),
-          ],
-        );
-      },
+              const SizedBox(height: 4),
+              Text(
+                name,
+                style: const TextStyle(fontSize: 12),
+              ),
+            ],
+          );
+        },
+      )
     );
   }
 }

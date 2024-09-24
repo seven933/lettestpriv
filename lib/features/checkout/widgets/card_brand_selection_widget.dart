@@ -7,8 +7,9 @@ import 'package:sixam_mart/util/dimensions.dart';
 class CardSelectionWidget extends StatelessWidget {
   
   final CheckoutController checkoutController;
+  final int type;
 
-  const CardSelectionWidget({Key? key, required this.checkoutController}) : super(key: key);
+  const CardSelectionWidget({Key? key, required this.checkoutController, required this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class CardSelectionWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Select Card Type', 
+              'select_card_brand'.tr, 
               style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: Dimensions.fontSizeSmall, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: Dimensions.paddingSizeSmall),
