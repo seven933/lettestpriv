@@ -49,7 +49,7 @@ class CardSelectionWidget extends StatelessWidget {
                       brand?.image ?? '', // Use o caminho da imagem da API
                       brand?.name ?? 'Unknown', 
                       () {
-                        checkoutController.selectCard(brand?.name ?? ''); // Seleciona a bandeira do cartão
+                       // checkoutController.selectCard(brand?.name ?? ''); // Seleciona a bandeira do cartão
                       },
                     );
                   }).toList(),
