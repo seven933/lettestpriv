@@ -18,19 +18,22 @@ class CardBrandModel {
   });
 
   // Método que converte um Map em um CardBrandModel
-  factory CardBrandModel.fromMap(String code, Map<String, dynamic> map) {
+  factory CardBrandModel.fromMap(Map<String, dynamic> map) {
     return CardBrandModel(
-      code: code,  // O código da bandeira (visa, mastercard, etc.) vem da chave
+      code: map['code'],  // A chave 'code' deve estar dentro do próprio Map
       name: map['name'],
       image: map['image'],
-      status: map['status'],
-      debitStatus: map['debit_status'],
-      creditStatus: map['credit_status'],
+      status: map['status'] != null ? (map['status'] as num).toInt() : null,
+      debitStatus: map['debit_status'] != null ? (map['debit_status'] as num).toInt() : null,
+      creditStatus: map['credit_status'] != null ? (map['credit_status'] as num).toInt() : null,
     );
   }
 
-  // Método que converte um JSON string em um Map e chama o fromMap
-  factory CardBrandModel.fromJson(String source) => CardBrandModel.fromMap(json.decode(source)['code'], json.decode(source));
+  // Método que converte um JSON string em um CardBrandModel
+  factory CardBrandModel.fromJson(String source) {
+    final Map<String, dynamic> map = json.decode(source);
+    return CardBrandModel.fromMap(map);
+  }
 
   // Método que converte o CardBrandModel de volta para Map
   Map<String, dynamic> toMap() {
@@ -51,10 +54,12 @@ class CardBrandModel {
 // Função que recebe o dicionário JSON e converte para uma lista de CardBrandModel
 List<CardBrandModel> parseCardBrands(Map<String, dynamic> data) {
   List<CardBrandModel> cardBrands = [];
-  
+
   // Iterar sobre as chaves e valores do mapa
   data.forEach((key, value) {
-    cardBrands.add(CardBrandModel.fromMap(key, value));
+    final Map<String, dynamic> map = value is Map<String, dynamic> ? value : {};
+    map['code'] = key;  // Adicionar o código da bandeira
+    cardBrands.add(CardBrandModel.fromMap(map));
   });
 
   return cardBrands;

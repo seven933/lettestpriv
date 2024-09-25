@@ -6,7 +6,6 @@ import 'package:sixam_mart/features/checkout/controllers/checkout_controller.dar
 import 'package:sixam_mart/util/dimensions.dart';
 
 class CardSelectionWidget extends StatelessWidget {
-
   final CheckoutController checkoutController;
   final int type;
   final int storeId;
@@ -16,49 +15,56 @@ class CardSelectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (checkoutController.paymentMethodIndex == 3 || checkoutController.paymentMethodIndex == 4)
-      ? FutureBuilder<List<CardBrandModel?>>(
-          future: Get.find<CardBrandController>().getAcceptedCardBrandListByStoreId(storeId),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator(); // Mostra um loading enquanto carrega
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Text('No card brands available');
-            }
+        ? FutureBuilder<List<CardBrandModel>>(
+            future: _getCardBrandList(),  // Atualizando para usar o método que garante o tipo correto
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator(); // Mostra um loading enquanto carrega
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return const Text('No card brands available');
+              }
 
-            List<CardBrandModel?> cardBrandList = snapshot.data!;
+              List<CardBrandModel> cardBrandList = snapshot.data!;
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'select_card_brand'.tr, 
-                  style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                    fontSize: Dimensions.fontSizeSmall, 
-                    fontWeight: FontWeight.w500
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'select_card_brand'.tr,
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                          fontSize: Dimensions.fontSizeSmall,
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
-                ),
-                const SizedBox(height: Dimensions.paddingSizeSmall),
-                Wrap(
-                  spacing: Dimensions.paddingSizeSmall,
-                  runSpacing: Dimensions.paddingSizeSmall,
-                  children: cardBrandList.map((brand) {
-                    return _buildCardOption(
-                      context,
-                      brand?.image ?? '', // Use o caminho da imagem da API
-                      brand?.name ?? 'Unknown', 
-                      () {
-                       // checkoutController.selectCard(brand?.name ?? ''); // Seleciona a bandeira do cartão
-                      },
-                    );
-                  }).toList(),
-                ),
-              ],
-            );
-          },
-        )
-      : const SizedBox();
+                  const SizedBox(height: Dimensions.paddingSizeSmall),
+                  Wrap(
+                    spacing: Dimensions.paddingSizeSmall,
+                    runSpacing: Dimensions.paddingSizeSmall,
+                    children: cardBrandList.map((brand) {
+                      return _buildCardOption(
+                        context,
+                        brand.image ?? '', // Use o caminho da imagem da API
+                        brand.name ?? 'Unknown',
+                        () {
+                          // Ação para selecionar a bandeira do cartão
+                          // checkoutController.selectCard(brand.name ?? '');
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ],
+              );
+            },
+          )
+        : const SizedBox();
+  }
+
+  // Função para garantir o retorno de uma lista de CardBrandModel
+  Future<List<CardBrandModel>> _getCardBrandList() async {
+    List<dynamic> rawList = await Get.find<CardBrandController>().getAcceptedCardBrandListByStoreId(storeId);
+    return rawList.map((item) => CardBrandModel.fromJson(item)).toList(); // Mapeamento correto de dynamic para CardBrandModel
   }
 
   Widget _buildCardOption(BuildContext context, String imageUrl, String label, VoidCallback onTap) {
@@ -72,10 +78,10 @@ class CardSelectionWidget extends StatelessWidget {
           }),
           const SizedBox(height: Dimensions.paddingSizeSmall),
           Text(
-            label, 
+            label,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
-              fontSize: Dimensions.fontSizeExtraSmall,
-            ),
+                  fontSize: Dimensions.fontSizeExtraSmall,
+                ),
           ),
         ],
       ),
