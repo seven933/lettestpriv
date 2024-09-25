@@ -182,7 +182,7 @@ class PaymentSection extends StatelessWidget {
                                 child: CardSelectionWidget(
                                   checkoutController: checkoutController,
                                   type: checkoutController.paymentMethodIndex,
-                                  storeId: storeId!,
+                                  storeId: 3,
                                 ),
                               )
                             else
