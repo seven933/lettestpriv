@@ -21,7 +21,7 @@ class AppConstants {
   static const String cardPayment = '/api/v1/mercadopago/card-payment';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
-  static const String storeCardBrandListUri = '/api/v1/card-brand/store';
+  static const String storeCardBrandListUri = '/api/v1/card-brand/store/';
   static const String storeItemUri = '/api/v1/items/latest';
   static const String popularItemUri = '/api/v1/items/popular';
   static const String reviewedItemUri = '/api/v1/items/most-reviewed';
