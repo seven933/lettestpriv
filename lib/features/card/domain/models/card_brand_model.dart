@@ -17,15 +17,27 @@ class CardBrandModel {
     this.creditStatus,
   });
 
-  // Agora aceitando 'code' como parâmetro
+  // Método que converte um Map em um CardBrandModel
   factory CardBrandModel.fromMap(String code, Map<String, dynamic> map) {
     return CardBrandModel(
-      code: code,  // O código da bandeira (visa, mastercard, etc.) vem da chave
+      code: code,
       name: map['name'],
       image: map['image'],
       status: map['status'] != null ? (map['status'] as num).toInt() : null,
       debitStatus: map['debit_status'] != null ? (map['debit_status'] as num).toInt() : null,
       creditStatus: map['credit_status'] != null ? (map['credit_status'] as num).toInt() : null,
+    );
+  }
+
+  // Novo método fromJson
+  factory CardBrandModel.fromJson(Map<String, dynamic> json) {
+    return CardBrandModel(
+      code: json['code'],
+      name: json['name'],
+      image: json['image'],
+      status: json['status'] != null ? (json['status'] as num).toInt() : null,
+      debitStatus: json['debit_status'] != null ? (json['debit_status'] as num).toInt() : null,
+      creditStatus: json['credit_status'] != null ? (json['credit_status'] as num).toInt() : null,
     );
   }
 
