@@ -64,7 +64,7 @@ class CardSelectionWidget extends StatelessWidget {
   // Função para garantir o retorno de uma lista de CardBrandModel
   Future<List<CardBrandModel>> _getCardBrandList() async {
     List<dynamic> rawList = await Get.find<CardBrandController>().getAcceptedCardBrandListByStoreId(storeId);
-    return rawList.map((item) => CardBrandModel.fromJson(item)).toList(); // Mapeamento correto de dynamic para CardBrandModel
+    return rawList.map((item) => CardBrandModel.fromJson(item as Map<String, dynamic>)).toList(); // Mapeamento correto de dynamic para CardBrandModel
   }
 
   Widget _buildCardOption(BuildContext context, String imageUrl, String label, VoidCallback onTap) {
