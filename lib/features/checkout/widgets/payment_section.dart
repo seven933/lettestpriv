@@ -111,22 +111,15 @@ class PaymentSection extends StatelessWidget {
                                             ? Images.wallet
                                             : checkoutController.paymentMethodIndex == 2
                                                 ? Images.pix
-                                                : (checkoutController.paymentMethodIndex == 3 ||
-                                                        checkoutController.paymentMethodIndex == 4)
-                                                    ? Images.cards
                                                     : Images.cash,
                                     width: 20,
                                     height: 20,
                                     color: Theme.of(context).textTheme.bodyMedium!.color,
                                   )
                                 : Icon(
-                                    !ResponsiveHelper.isDesktop(context)
-                                        ? Icons.wallet_outlined
-                                        : Icons.add_circle_outline_sharp,
+                                    Icons.wallet_outlined
                                     size: 18,
-                                    color: !ResponsiveHelper.isDesktop(context)
-                                        ? Theme.of(context).disabledColor
-                                        : Theme.of(context).primaryColor,
+                                    color: Theme.of(context).disabledColor
                                   ),
                             const SizedBox(width: Dimensions.paddingSizeSmall),
                             Expanded(
@@ -171,7 +164,6 @@ class PaymentSection extends StatelessWidget {
                             ),
                             const SizedBox(height: 80),
 
-                            // Ensure CardSelectionWidget has a proper size limit using ConstrainedBox
                             if (checkoutController.paymentMethodIndex == 3 ||
                                 checkoutController.paymentMethodIndex == 4)
                               ConstrainedBox(
