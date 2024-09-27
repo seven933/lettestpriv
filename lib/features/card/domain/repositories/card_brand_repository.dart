@@ -30,7 +30,7 @@ class CardBrandRepository implements CardBrandRepositoryInterface {
       }).toList();
     }
 
-    return cardBrandList;
+    return cardBrandList.whereType<CardBrandModel>().toList();
   }
 
   @override
@@ -49,6 +49,6 @@ class CardBrandRepository implements CardBrandRepositoryInterface {
       }).toList();
     }
 
-    return cardBrandList;
+    return cardBrandList.whereType<CardBrandModel>().toList();
   }
 }
