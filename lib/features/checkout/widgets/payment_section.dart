@@ -117,7 +117,7 @@ class PaymentSection extends StatelessWidget {
                                     color: Theme.of(context).textTheme.bodyMedium!.color,
                                   )
                                 : Icon(
-                                    Icons.wallet_outlined
+                                    Icons.wallet_outlined,
                                     size: 18,
                                     color: Theme.of(context).disabledColor
                                   ),
