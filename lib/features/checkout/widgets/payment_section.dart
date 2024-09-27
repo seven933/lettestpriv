@@ -103,7 +103,7 @@ class PaymentSection extends StatelessWidget {
                         onTap: () {},
                         child: Row(
                           children: [
-                            checkoutController.paymentMethodIndex != -1
+                            (checkoutController.paymentMethodIndex != -1 && checkoutController.paymentMethodIndex != 3 && checkoutController.paymentMethodIndex != 4) 
                                 ? Image.asset(
                                     checkoutController.paymentMethodIndex == 0
                                         ? Images.cash
@@ -116,11 +116,12 @@ class PaymentSection extends StatelessWidget {
                                     height: 20,
                                     color: Theme.of(context).textTheme.bodyMedium!.color,
                                   )
-                                : Icon(
+                                : (checkoutController.paymentMethodIndex != 3 && checkoutController.paymentMethodIndex != 4) ? Icon(
                                     Icons.wallet_outlined,
                                     size: 18,
                                     color: Theme.of(context).disabledColor
-                                  ),
+                                  ) 
+                                : const SizedBox(),
                             const SizedBox(width: Dimensions.paddingSizeSmall),
                             Expanded(
                               child: Row(
@@ -139,11 +140,7 @@ class PaymentSection extends StatelessWidget {
                                                         : 'select_payment_method'.tr,
                                     style: robotoMedium.copyWith(
                                       fontSize: Dimensions.fontSizeSmall,
-                                      color: !ResponsiveHelper.isDesktop(context)
-                                          ? Theme.of(context).disabledColor
-                                          : checkoutController.paymentMethodIndex == -1
-                                              ? Theme.of(context).primaryColor
-                                              : Theme.of(context).disabledColor,
+                                      color: Theme.of(context).disabledColor,
                                     ),
                                   ),
                                   if (checkoutController.paymentMethodIndex == 3 ||
