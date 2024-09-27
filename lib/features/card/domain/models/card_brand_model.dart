@@ -4,40 +4,22 @@ class CardBrandModel {
   String? code;
   String? name;
   String? image;
-  int? status;
-  int? debitStatus;
-  int? creditStatus;
+  List<String>? type;
 
   CardBrandModel({
     this.code,
     this.name,
     this.image,
-    this.status,
-    this.debitStatus,
-    this.creditStatus,
+    this.type,
   });
 
   // Método que converte um Map em um CardBrandModel
-  factory CardBrandModel.fromMap(String code, Map<String, dynamic> map) {
-    return CardBrandModel(
-      code: code,
-      name: map['name'],
-      image: map['image'],
-      status: map['status'] != null ? (map['status'] as num).toInt() : null,
-      debitStatus: map['debit_status'] != null ? (map['debit_status'] as num).toInt() : null,
-      creditStatus: map['credit_status'] != null ? (map['credit_status'] as num).toInt() : null,
-    );
-  }
-
-  // Novo método fromJson
   factory CardBrandModel.fromJson(Map<String, dynamic> json) {
     return CardBrandModel(
       code: json['code'],
       name: json['name'],
       image: json['image'],
-      status: json['status'] != null ? (json['status'] as num).toInt() : null,
-      debitStatus: json['debit_status'] != null ? (json['debit_status'] as num).toInt() : null,
-      creditStatus: json['credit_status'] != null ? (json['credit_status'] as num).toInt() : null,
+      type: List<String>.from(json['type'] ?? []), // Garantindo que o 'type' seja uma lista de strings
     );
   }
 
@@ -47,12 +29,7 @@ class CardBrandModel {
       'code': code,
       'name': name,
       'image': image,
-      'status': status,
-      'debit_status': debitStatus,
-      'credit_status': creditStatus,
+      'type': type,
     };
   }
-
-  // Método que converte o modelo para JSON string
-  String toJson() => json.encode(toMap());
 }

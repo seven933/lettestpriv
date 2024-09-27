@@ -8,7 +8,7 @@ import 'package:sixam_mart/util/app_constants.dart';
 *
 * @author Giovane Neves
 */
-class CardBrandRepository implements CardBrandRepositoryInterface{
+class CardBrandRepository implements CardBrandRepositoryInterface {
 
   final ApiClient apiClient;
 
@@ -21,11 +21,12 @@ class CardBrandRepository implements CardBrandRepositoryInterface{
     Response response = await apiClient.getData(AppConstants.cardBrandListUri);
 
     if (response.statusCode == 200 && response.body != null) {
-      Map<String, dynamic> body = response.body; // O corpo da resposta é um mapa
-      cardBrandList = body.entries.map((entry) {
-        String code = entry.key; // A chave é o código do cartão
-        Map<String, dynamic> map = entry.value; // O valor é o objeto com os dados
-        return CardBrandModel.fromMap(code, map); // Criando o modelo com o código e o mapa
+      // Acessando o array "card_brands"
+      List<dynamic> body = response.body['card_brands'];
+
+      // Mapeando a lista para o modelo
+      cardBrandList = body.map((item) {
+        return CardBrandModel.fromJson(item); // Criando o modelo com o JSON correto
       }).toList();
     }
 
@@ -39,11 +40,12 @@ class CardBrandRepository implements CardBrandRepositoryInterface{
     Response response = await apiClient.getData('${AppConstants.storeCardBrandListUri}$storeId');
 
     if (response.statusCode == 200 && response.body != null) {
-      Map<String, dynamic> body = response.body; // O corpo da resposta é um mapa
-      cardBrandList = body.entries.map((entry) {
-        String code = entry.key; // A chave é o código do cartão
-        Map<String, dynamic> map = entry.value; // O valor é o objeto com os dados
-        return CardBrandModel.fromMap(code, map); // Criando o modelo com o código e o mapa
+      // Acessando o array "card_brands"
+      List<dynamic> body = response.body['card_brands'];
+
+      // Mapeando a lista para o modelo
+      cardBrandList = body.map((item) {
+        return CardBrandModel.fromJson(item); // Criando o modelo com o JSON correto
       }).toList();
     }
 
