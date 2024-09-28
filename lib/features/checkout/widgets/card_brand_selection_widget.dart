@@ -20,14 +20,14 @@ class CardSelectionWidget extends StatelessWidget {
             future: Get.find<CardBrandController>().getAcceptedCardBrandListByStoreId(storeId),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return Text('No card brands available');
+                return const Text('No card brands available');
               }
 
-               return Wrap(
+              return Wrap(
                 children: snapshot.data!.map((brand) {
                   return GestureDetector(
                     onTap: () {
@@ -59,16 +59,18 @@ class CardSelectionWidget extends StatelessWidget {
                             Text(
                               brand.name ?? 'Unknown',
                               style: TextStyle(
-                                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, 
+                                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                               ),
                             ),
                           ],
                         ),
+                      );
+                    }),
                   );
                 }).toList(),
               );
             },
-        )
+          )
         : const SizedBox();
   }
 
@@ -77,9 +79,8 @@ class CardSelectionWidget extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
-          // Exibe a imagem da bandeira do cartão
           Image.network(imageUrl, width: 40, height: 40, errorBuilder: (context, error, stackTrace) {
-            return const Icon(Icons.credit_card, size: 40); // Ícone padrão se houver erro ao carregar a imagem
+            return const Icon(Icons.credit_card, size: 40); 
           }),
           const SizedBox(height: Dimensions.paddingSizeSmall),
           Text(
