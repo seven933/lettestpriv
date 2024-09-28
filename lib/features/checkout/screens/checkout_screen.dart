@@ -548,7 +548,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   needChange: 1,
                   cashOnDeliveryAmount: Get.find<CheckoutController>().cashOnDeliveryAmount,
                   userCpf: Get.find<ProfileController>().userInfoModel!.cpf,
-                  cardBrand: Get.find<CheckoutController>().selectedCardBrand(),
+                  cardBrand: Get.find<CheckoutController>().selectedCardBrand,
                 );
 
                 /*if(checkoutController.paymentMethodIndex == 3){

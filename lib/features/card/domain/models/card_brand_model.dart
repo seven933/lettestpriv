@@ -26,7 +26,6 @@ class CardBrandModel {
       
       'code' : code,
       'name' : name,
-      'expiration_date' : expirationDate,
       'image' : image,
       'type' : type
     };
