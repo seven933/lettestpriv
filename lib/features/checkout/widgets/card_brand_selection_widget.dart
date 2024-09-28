@@ -16,48 +16,28 @@ class CardSelectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return (checkoutController.paymentMethodIndex == 3 || checkoutController.paymentMethodIndex == 4)
         ? FutureBuilder<List<CardBrandModel>>(
-            future: _getCardBrandList(),  // Atualizando para usar o método que garante o tipo correto
+            future: Get.find<CardBrandController>().getAcceptedCardBrandListByStoreId(storeId),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator(); // Mostra um loading enquanto carrega
+                return CircularProgressIndicator();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return const Text('No card brands available');
+                return Text('No card brands available');
               }
 
-              List<CardBrandModel> cardBrandList = snapshot.data!;
-
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'select_card_brand'.tr,
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                          fontSize: Dimensions.fontSizeSmall,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                  const SizedBox(height: Dimensions.paddingSizeSmall),
-                  Wrap(
-                    spacing: Dimensions.paddingSizeSmall,
-                    runSpacing: Dimensions.paddingSizeSmall,
-                    children: cardBrandList.map((brand) {
-                      return _buildCardOption(
-                        context,
-                        brand.image ?? '', // Use o caminho da imagem da API
-                        brand.name ?? 'Unknown',
-                        () {
-                          // Ação para selecionar a bandeira do cartão
-                          // checkoutController.selectCard(brand.name ?? '');
-                        },
-                      );
-                    }).toList(),
-                  ),
-                ],
+              return Wrap(
+                children: snapshot.data!.map((brand) {
+                  return Column(
+                    children: [
+                      Image.network(brand.image ?? '', width: 40, height: 40),
+                      Text(brand.name ?? 'Unknown'),
+                    ],
+                  );
+                }).toList(),
               );
             },
-          )
+        )
         : const SizedBox();
   }
 
@@ -70,7 +50,7 @@ class CardSelectionWidget extends StatelessWidget {
     return rawList.where((item) => item is Map<String, dynamic>).map((item) {
       return CardBrandModel.fromJson(item as Map<String, dynamic>);
     }).toList();
-    
+
   }
 
   Widget _buildCardOption(BuildContext context, String imageUrl, String label, VoidCallback onTap) {
