@@ -20,57 +20,30 @@ class CardSelectionWidget extends StatelessWidget {
             future: Get.find<CardBrandController>().getAcceptedCardBrandListByStoreId(storeId),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
+                return CircularProgressIndicator();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return const Text('No card brands available');
+                return Text('No card brands available');
               }
 
-              return Wrap(
+               return Wrap(
                 children: snapshot.data!.map((brand) {
                   return GestureDetector(
                     onTap: () {
                       Get.find<CheckoutController>().setCardBrand(brand);
                     },
-                    child: Obx(() {
-                      bool isSelected = checkoutController.selectedCardBrand?.code == brand.code;
-
-                      return Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: isSelected ? Colors.blue : Colors.transparent,
-                            width: isSelected ? 2 : 0,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          children: [
-                            Image.network(
-                              brand.image ?? '',
-                              width: 40,
-                              height: 40,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Icon(Icons.credit_card, size: 40);
-                              },
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              brand.name ?? 'Unknown',
-                              style: TextStyle(
-                                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }),
+                    child: Column(
+                      children: [
+                        Image.network(brand.image ?? '', width: 40, height: 40),
+                        Text(brand.name ?? 'Unknown'),
+                      ],
+                    ),
                   );
                 }).toList(),
               );
             },
-          )
+        )
         : const SizedBox();
   }
 
@@ -79,8 +52,9 @@ class CardSelectionWidget extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
+          // Exibe a imagem da bandeira do cartão
           Image.network(imageUrl, width: 40, height: 40, errorBuilder: (context, error, stackTrace) {
-            return const Icon(Icons.credit_card, size: 40); 
+            return const Icon(Icons.credit_card, size: 40); // Ícone padrão se houver erro ao carregar a imagem
           }),
           const SizedBox(height: Dimensions.paddingSizeSmall),
           Text(
