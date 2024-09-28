@@ -34,19 +34,21 @@ class CardBrandRepository implements CardBrandRepositoryInterface {
   }
 
   @override
-  Future<List<CardBrandModel?>> getAcceptedCardBrandListByStoreId(int storeId) async {
+  Future<List<CardBrandModel>> getAcceptedCardBrandListByStoreId(int storeId) async {
     List<CardBrandModel?> cardBrandList = [];
 
     Response response = await apiClient.getData('${AppConstants.storeCardBrandListUri}$storeId');
 
     if (response.statusCode == 200 && response.body != null) {
+      
       // Acessando o array "card_brands"
       List<dynamic> body = response.body['card_brands'];
 
       // Mapeando a lista para o modelo
-      cardBrandList = body.map((item) {
-        return CardBrandModel.fromJson(item); // Criando o modelo com o JSON correto
+      cardBrandList = body.where((item) => item is Map<String, dynamic>).map((item) {
+        return CardBrandModel.fromJson(item as Map<String, dynamic>);
       }).toList();
+
     }
 
     return cardBrandList.whereType<CardBrandModel>().toList();

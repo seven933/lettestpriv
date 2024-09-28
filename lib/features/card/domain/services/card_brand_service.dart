@@ -19,7 +19,7 @@ class CardBrandService implements CardBrandServiceInterface{
 	}
 
 	@override
-	Future<List<CardBrandModel?>> getAcceptedCardBrandListByStoreId(int storeId) async{
+	Future<List<CardBrandModel>> getAcceptedCardBrandListByStoreId(int storeId) async{
 
 		return await cardBrandRepositoryInterface.getAcceptedCardBrandListByStoreId(storeId);
 

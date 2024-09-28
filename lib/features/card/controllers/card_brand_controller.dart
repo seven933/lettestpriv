@@ -22,11 +22,10 @@ class CardBrandController extends GetxController implements GetxService{
 	
 	}
 
-	Future<List<CardBrandModel?>> getAcceptedCardBrandListByStoreId(int storeId) async{
-
-		update();
-		return await cardBrandServiceInterface.getAcceptedCardBrandListByStoreId(storeId);
-
+	Future<List<CardBrandModel>> getAcceptedCardBrandListByStoreId(int storeId) async {
+	
+		return (await cardBrandServiceInterface.getAcceptedCardBrandListByStoreId(storeId)).whereType<CardBrandModel>().toList();
+	
 	}
 
 
