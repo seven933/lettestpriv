@@ -24,7 +24,7 @@ class CardBrandController extends GetxController implements GetxService{
 
 	Future<List<CardBrandModel>> getAcceptedCardBrandListByStoreId(int storeId){
 	
-		 return cardBrandRepository.getAcceptedCardBrandListByStoreId(storeId);
+		 return cardBrandServiceInterface.getAcceptedCardBrandListByStoreId(storeId);
 	
 	}
 
