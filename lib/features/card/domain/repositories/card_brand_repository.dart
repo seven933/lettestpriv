@@ -33,7 +33,7 @@ class CardBrandRepository implements CardBrandRepositoryInterface {
     return cardBrandList.whereType<CardBrandModel>().toList();
   }
 
-  	@Override
+  	@override
 	Future<List<CardBrandModel>> getAcceptedCardBrandListByStoreId(int storeId) async {
 	  List<CardBrandModel> cardBrandList = [];
 
