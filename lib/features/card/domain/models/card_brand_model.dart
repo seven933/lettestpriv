@@ -19,4 +19,17 @@ class CardBrandModel {
       type: List<String>.from(json['type'] ?? []),
     );
   }
+
+  Map<String, dynamic> toMap(){
+
+    return {
+      
+      'code' : code,
+      'name' : name,
+      'expiration_date' : expirationDate,
+      'image' : image,
+      'type' : type
+    };
+
+  }
 }

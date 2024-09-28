@@ -2,11 +2,13 @@ import 'dart:convert';
 import 'package:sixam_mart/features/address/domain/models/address_model.dart';
 import 'package:sixam_mart/features/item/domain/models/item_model.dart';
 import 'package:sixam_mart/features/card/domain/models/card_model.dart';
+import 'package:sixam_mart/features/card/domain/models/card_brand_model.dart';
 
 class PlaceOrderBodyModel {
   List<OnlineCart>? _cart;
   double? cashOnDeliveryAmount;
   CardModel? card;
+  CardBrandModel? cardBrand;
   double? _couponDiscountAmount;
   double? _orderAmount;
   String? _orderType;
@@ -46,6 +48,7 @@ class PlaceOrderBodyModel {
     required List<OnlineCart> cart,
     this.cashOnDeliveryAmount = 0.0,
     this.card = null,
+    this.cardBrand = null,
     required double? couponDiscountAmount,
     required String? couponCode,
     required double orderAmount,
@@ -80,6 +83,7 @@ class PlaceOrderBodyModel {
     required String? guestEmail,
     int? needChange,
     String? userCpf,
+
 
   }) {
     _cart = cart;
@@ -208,6 +212,9 @@ class PlaceOrderBodyModel {
     }
     if (card != null) {
       data['card'] = jsonEncode(card!.toMap());
+    }
+    if(cardBrand != null){
+      data['card_brand'] = jsonEncode(cardBrand!.toMap());
     }
     if (_couponDiscountAmount != null) {
       data['coupon_discount_amount'] = _couponDiscountAmount.toString();
