@@ -6,6 +6,7 @@ import 'package:sixam_mart/features/checkout/controllers/checkout_controller.dar
 import 'package:sixam_mart/util/dimensions.dart';
 
 class CardSelectionWidget extends StatelessWidget {
+  
   final CheckoutController checkoutController;
   final int type;
   final int storeId;
@@ -39,18 +40,6 @@ class CardSelectionWidget extends StatelessWidget {
             },
         )
         : const SizedBox();
-  }
-
-  // Função para garantir o retorno de uma lista de CardBrandModel
-  Future<List<CardBrandModel>> _getCardBrandList() async {
-    
-    List<dynamic> rawList = await Get.find<CardBrandController>().getAcceptedCardBrandListByStoreId(storeId);
-
-    // Verificação se todos os itens são do tipo Map<String, dynamic>
-    return rawList.where((item) => item is Map<String, dynamic>).map((item) {
-      return CardBrandModel.fromJson(item as Map<String, dynamic>);
-    }).toList();
-
   }
 
   Widget _buildCardOption(BuildContext context, String imageUrl, String label, VoidCallback onTap) {

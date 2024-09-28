@@ -36,6 +36,7 @@ import 'package:sixam_mart/features/checkout/screens/order_successful_screen.dar
 import 'package:sixam_mart/features/pix/controllers/pix_controller.dart';
 import 'package:sixam_mart/features/pix/domain/models/create_pix_payment_model.dart';
 import 'package:sixam_mart/features/card/domain/models/card_model.dart';
+import 'package:sixam_mart/features/card/domain/models/card_brand_model.dart';
 import 'package:mercadopago_sdk/mercadopago_sdk.dart';
 
 class CheckoutController extends GetxController implements GetxService {
@@ -167,6 +168,9 @@ class CheckoutController extends GetxController implements GetxService {
   CardModel? _selectedCreditCard = null;
   CardModel? get selectedCreditCard => _selectedCreditCard;
 
+  CardBrandModel? _selectedCardBrand = null;
+  CardBrandModel? get selectedCardBrand => _selectedCreditCard;
+
   Future<void> initCheckoutData(int? storeId) async {
 
     Get.find<CouponController>().removeCouponData(false);
@@ -176,6 +180,12 @@ class CheckoutController extends GetxController implements GetxService {
   
   }
 
+  void setCardBrand(CardBrandModel? cardBrand){
+
+    this._selectedCardBrand = cardBrand;
+
+  }
+  
   void showTipsField(){
     _canShowTipsField = !_canShowTipsField;
     update();
