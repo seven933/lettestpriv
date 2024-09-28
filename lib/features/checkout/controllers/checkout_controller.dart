@@ -169,7 +169,7 @@ class CheckoutController extends GetxController implements GetxService {
   CardModel? get selectedCreditCard => _selectedCreditCard;
 
   CardBrandModel? _selectedCardBrand = null;
-  CardBrandModel? get selectedCardBrand => _selectedCreditCard;
+  CardBrandModel? get selectedCardBrand => _selectedCardBrand;
 
   Future<void> initCheckoutData(int? storeId) async {
 
