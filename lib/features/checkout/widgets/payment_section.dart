@@ -134,22 +134,15 @@ class PaymentSection extends StatelessWidget {
                                             : checkoutController.paymentMethodIndex == 2
                                                 ? 'pix_on_delivery'.tr
                                                 : checkoutController.paymentMethodIndex == 3
-                                                    ? 'credit_card_on_delivery'.tr
+                                                    ? ''
                                                     : checkoutController.paymentMethodIndex == 4
-                                                        ? 'debit_card_on_delivery'.tr
+                                                        ? ''
                                                         : 'select_payment_method'.tr,
                                     style: robotoMedium.copyWith(
                                       fontSize: Dimensions.fontSizeSmall,
                                       color: Theme.of(context).disabledColor,
                                     ),
                                   ),
-                                  if (checkoutController.paymentMethodIndex == 3 ||
-                                      checkoutController.paymentMethodIndex == 4)
-                                    Image.asset(
-                                      Images.mastercard,
-                                      width: 25,
-                                      height: 25,
-                                    ),
                                   if (checkoutController.paymentMethodIndex == -1 &&
                                       !ResponsiveHelper.isDesktop(context))
                                     Padding(
