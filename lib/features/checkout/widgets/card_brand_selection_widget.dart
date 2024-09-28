@@ -6,7 +6,7 @@ import 'package:sixam_mart/features/checkout/controllers/checkout_controller.dar
 import 'package:sixam_mart/util/dimensions.dart';
 
 class CardSelectionWidget extends StatelessWidget {
-  
+
   final CheckoutController checkoutController;
   final int type;
   final int storeId;
@@ -27,13 +27,43 @@ class CardSelectionWidget extends StatelessWidget {
                 return Text('No card brands available');
               }
 
-              return Wrap(
+               return Wrap(
                 children: snapshot.data!.map((brand) {
-                  return Column(
-                    children: [
-                      Image.network(brand.image ?? '', width: 40, height: 40),
-                      Text(brand.name ?? 'Unknown'),
-                    ],
+                  return GestureDetector(
+                    onTap: () {
+                      Get.find<CheckoutController>().setCardBrand(brand);
+                    },
+                    child: Obx(() {
+                      bool isSelected = checkoutController.selectedCardBrand?.code == brand.code;
+
+                      return Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: isSelected ? Colors.blue : Colors.transparent,
+                            width: isSelected ? 2 : 0,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            Image.network(
+                              brand.image ?? '',
+                              width: 40,
+                              height: 40,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(Icons.credit_card, size: 40);
+                              },
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              brand.name ?? 'Unknown',
+                              style: TextStyle(
+                                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, 
+                              ),
+                            ),
+                          ],
+                        ),
                   );
                 }).toList(),
               );
