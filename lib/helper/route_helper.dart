@@ -91,7 +91,7 @@ import 'package:sixam_mart/features/wallet/screens/wallet_screen.dart';
 import 'package:sixam_mart/features/card/screens/add_card_account.dart';
 import 'package:sixam_mart/features/card/screens/register_new_card_screen.dart';
 import 'package:sixam_mart/features/payment/screens/pix_payment_screen.dart';
-import 'package:sixam_mart/features/taxi-booking/home/ride_sharing_home.dart';
+import 'package:sixam_mart/features/taxi_booking/home/ride_sharing_home.dart';
 
 class RouteHelper {
 
