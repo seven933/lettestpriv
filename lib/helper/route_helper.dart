@@ -91,8 +91,10 @@ import 'package:sixam_mart/features/wallet/screens/wallet_screen.dart';
 import 'package:sixam_mart/features/card/screens/add_card_account.dart';
 import 'package:sixam_mart/features/card/screens/register_new_card_screen.dart';
 import 'package:sixam_mart/features/payment/screens/pix_payment_screen.dart';
+import 'package:sixam_mart/features/taxi-booking/home/ride_sharing_home.dart';
 
 class RouteHelper {
+
   static const String initial = '/';
   static const String splash = '/splash';
   static const String language = '/language';
@@ -164,6 +166,8 @@ class RouteHelper {
   static const String favourite = '/favourite';
   static const String accountCards = '/account-cards';
   static const String addAccountCard = '/add-card-account';
+
+  static const String riderHome = '/rider';
 
   static String getInitialRoute({bool fromSplash = false}) => '$initial?from-splash=$fromSplash';
   static String getSplashRoute(NotificationBodyModel? body) {
@@ -336,6 +340,7 @@ class RouteHelper {
   static String getPixPaymentScreen(String pixCode, double amount) {
     return '$pixPayment?pix_code=$pixCode&amount=$amount';
   }
+  static String getRiderScreen() => riderHome;
   
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => getRoute(DashboardScreen(pageIndex: 0, fromSplash: Get.parameters['from-splash'] == 'true'))),
@@ -582,6 +587,7 @@ class RouteHelper {
     GetPage(name: favourite, page: () => const FavouriteScreen()),
     GetPage(name: accountCards, page: () => const AccountCardListScreen()),
     GetPage(name: addAccountCard, page: () => AddCardAccountScreen()),
+    GetPage(name: riderHome, page: () => RiderHomeScreen()),
     GetPage(
       name: pixPayment,
       page: () => PixPaymentScreen(

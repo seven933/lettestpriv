@@ -118,6 +118,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       PortionWidget(icon: Images.profileIcon, title: 'profile'.tr, route: RouteHelper.getProfileRoute()),
                       PortionWidget(icon: Images.addressIcon, title: 'my_address'.tr, route: RouteHelper.getAddressRoute()),
                       PortionWidget(icon: Images.cards, title: 'my_account_cards'.tr, route: RouteHelper.getAccountCardsScreen()),
+                      PortionWidget(icon: Images.languageIcon, title: 'taxi'.tr, route: RouteHelper.getRiderScreen()),
                       //PortionWidget(icon: Images.pix, title: 'Teste tela Pix', route: RouteHelper.getPixPaymentScreen()),
                       PortionWidget(icon: Images.languageIcon, title: 'language'.tr, hideDivider: true, route: RouteHelper.getLanguageRoute('menu')),
                     ]),
