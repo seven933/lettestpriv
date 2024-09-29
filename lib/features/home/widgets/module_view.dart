@@ -152,23 +152,6 @@ class ModuleView extends StatelessWidget {
         ) : const SizedBox() : AddressShimmer(isEnabled: AuthHelper.isLoggedIn() && locationController.addressList == null);
       }),
 
-      FutureBuilder<List<CardBrandModel?>>(
-          future: loadData(),  // Chama o método que retorna a lista
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator(); // Mostra um indicador de carregamento
-            } else if (snapshot.hasError) {
-              return const Text('Erro ao carregar dados');
-            } else if (snapshot.hasData && snapshot.data != null) {
-              // Recebe os dados do método loadData()
-              List<CardBrandModel?> cardBrands = snapshot.data!;
-              return AcceptedCardBrand(cardBrands: cardBrands);  // Passa os dados para o widget
-            } else {
-              return const Text('Nenhuma bandeira de cartão encontrada.');
-            }
-          },
-      ),
-
       const PopularStoreView(isPopular: false, isFeatured: true),
 
       const SizedBox(height: 120),

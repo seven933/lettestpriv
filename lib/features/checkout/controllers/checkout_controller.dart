@@ -534,6 +534,13 @@ class CheckoutController extends GetxController implements GetxService {
 
       }
 
+      // Lógica para lidar com cartão na entrega
+      if(placeOrderBody.paymentMethod == 'credit_card_on_delivery' || placeOrderBody.paymentMethod == 'debit_card_on_delivery'){
+
+        Get.toNamed(RouteHelper.getOrderSuccessRoute(orderID, Get.find<ProfileController>().userInfoModel!.phone));
+      
+      }
+
       if(placeOrderBody.paymentMethod == 'cash_on_delivery'){
         Get.toNamed(RouteHelper.getOrderSuccessRoute(orderID, Get.find<ProfileController>().userInfoModel!.phone));
       }
