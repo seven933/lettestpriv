@@ -8,7 +8,7 @@ class PlaceOrderBodyModel {
   List<OnlineCart>? _cart;
   double? cashOnDeliveryAmount;
   CardModel? card;
-  CardBrandModel? cardBrand;
+  String? cardBrand;
   double? _couponDiscountAmount;
   double? _orderAmount;
   String? _orderType;
@@ -214,7 +214,7 @@ class PlaceOrderBodyModel {
       data['card'] = jsonEncode(card!.toMap());
     }
     if(cardBrand != null){
-      data['card_brand'] = jsonEncode(cardBrand!.toMap());
+      data['card_brand'] = cardBrand.toString;//jsonEncode(cardBrand!.toMap());
     }
     if (_couponDiscountAmount != null) {
       data['coupon_discount_amount'] = _couponDiscountAmount.toString();

@@ -168,8 +168,8 @@ class CheckoutController extends GetxController implements GetxService {
   CardModel? _selectedCreditCard = null;
   CardModel? get selectedCreditCard => _selectedCreditCard;
 
-  CardBrandModel? _selectedCardBrand = null;
-  CardBrandModel? get selectedCardBrand => _selectedCardBrand;
+  String? _selectedCardBrand = null;
+  String? get selectedCardBrand => _selectedCardBrand;
 
   Future<void> initCheckoutData(int? storeId) async {
 
@@ -180,7 +180,7 @@ class CheckoutController extends GetxController implements GetxService {
   
   }
 
-  void setCardBrand(CardBrandModel? cardBrand){
+  void setCardBrand(String? cardBrand){
 
     this._selectedCardBrand = cardBrand;
 

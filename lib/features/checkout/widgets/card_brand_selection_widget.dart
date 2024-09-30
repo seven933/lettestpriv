@@ -38,7 +38,7 @@ class CardSelectionWidget extends StatelessWidget {
 
                   return GestureDetector(
                     onTap: () {
-                      checkoutController.setCardBrand(brand);
+                      checkoutController.setCardBrand(brand?.code);
                     },
                     child: Container(
                       decoration: BoxDecoration(
