@@ -32,13 +32,13 @@ class CardSelectionWidget extends StatelessWidget {
               }
 
               return Wrap(
-                spacing: 10, // Espaçamento entre os itens
+                spacing: 10,
                 children: snapshot.data!.map((brand) {
                   bool isSelected = checkoutController.selectedCardBrand?.code == brand.code;
 
                   return GestureDetector(
                     onTap: () {
-                      Get.find<CheckoutController>().setCardBrand(brand);
+                      checkoutController.setCardBrand(brand);
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -78,4 +78,5 @@ class CardSelectionWidget extends StatelessWidget {
         : const SizedBox();
   }
 }
+
 
