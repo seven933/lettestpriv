@@ -214,7 +214,7 @@ class PlaceOrderBodyModel {
       data['card'] = jsonEncode(card!.toMap());
     }
     if(cardBrand != null){
-      data['card_brand'] = cardBrand.toString;//jsonEncode(cardBrand!.toMap());
+      data['card_brand'] = cardBrand.toString();//jsonEncode(cardBrand!.toMap());
     }
     if (_couponDiscountAmount != null) {
       data['coupon_discount_amount'] = _couponDiscountAmount.toString();
