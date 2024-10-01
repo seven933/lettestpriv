@@ -2,10 +2,11 @@ import 'package:sixam_mart/common/models/module_model.dart';
 
 class ConfigModel {
   String? businessName;
-  String? logoFullUrl;
+  String? logo;
   String? address;
   String? phone;
   String? email;
+  BaseUrls? baseUrls;
   String? country;
   DefaultLocation? defaultLocation;
   String? currencySymbol;
@@ -72,21 +73,13 @@ class ConfigModel {
   bool? offlinePaymentStatus;
   bool? guestCheckoutStatus;
 
-  double? adminCommission;
-  int? subscriptionFreeTrialDays;
-  bool? subscriptionFreeTrialStatus;
-  int? subscriptionBusinessModel;
-  int? commissionBusinessModel;
-  String? subscriptionFreeTrialType;
-  bool? countryPickerStatus;
-  bool? firebaseOtpVerification;
-
   ConfigModel({
     this.businessName,
-    this.logoFullUrl,
+    this.logo,
     this.address,
     this.phone,
     this.email,
+    this.baseUrls,
     this.country,
     this.defaultLocation,
     this.currencySymbol,
@@ -152,21 +145,15 @@ class ConfigModel {
     this.addFundStatus,
     this.offlinePaymentStatus,
     this.guestCheckoutStatus,
-    this.subscriptionFreeTrialDays,
-    this.subscriptionFreeTrialStatus,
-    this.subscriptionBusinessModel,
-    this.commissionBusinessModel,
-    this.subscriptionFreeTrialType,
-    this.countryPickerStatus,
-    this.firebaseOtpVerification,
   });
 
   ConfigModel.fromJson(Map<String, dynamic> json) {
     businessName = json['business_name'];
-    logoFullUrl = json['logo_full_url'];
+    logo = json['logo'];
     address = json['address'];
     phone = json['phone'];
     email = json['email'];
+    baseUrls = json['base_urls'] != null ? BaseUrls.fromJson(json['base_urls']) : null;
     country = json['country'];
     defaultLocation = json['default_location'] != null ? DefaultLocation.fromJson(json['default_location']) : null;
     currencySymbol = json['currency_symbol'];
@@ -257,23 +244,18 @@ class ConfigModel {
     addFundStatus = json['add_fund_status'] == 1;
     offlinePaymentStatus = json['offline_payment_status'] == 1;
     guestCheckoutStatus = json['guest_checkout_status'] == 1;
-    adminCommission = json['admin_commission']?.toDouble();
-    subscriptionFreeTrialDays = json['subscription_free_trial_days'];
-    subscriptionFreeTrialStatus = json['subscription_free_trial_status'] == 1 ? true : false;
-    subscriptionBusinessModel = json['subscription_business_model'];
-    commissionBusinessModel = json['commission_business_model'];
-    subscriptionFreeTrialType = json['subscription_free_trial_type'];
-    countryPickerStatus = json['country_picker_status'] == 1;
-    firebaseOtpVerification = json['firebase_otp_verification'] == 1;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['business_name'] = businessName;
-    data['logo_full_url'] = logoFullUrl;
+    data['logo'] = logo;
     data['address'] = address;
     data['phone'] = phone;
     data['email'] = email;
+    if (baseUrls != null) {
+      data['base_urls'] = baseUrls!.toJson();
+    }
     data['country'] = country;
     if (defaultLocation != null) {
       data['default_location'] = defaultLocation!.toJson();
@@ -357,14 +339,6 @@ class ConfigModel {
     data['add_fund_status'] = addFundStatus;
     data['offline_payment_status'] = offlinePaymentStatus;
     data['guest_checkout_status'] = guestCheckoutStatus;
-    data['admin_commission'] = adminCommission;
-    data['subscription_free_trial_days'] = subscriptionFreeTrialDays;
-    data['subscription_free_trial_status'] = subscriptionFreeTrialStatus;
-    data['subscription_business_model'] = subscriptionBusinessModel;
-    data['commission_business_model'] = commissionBusinessModel;
-    data['subscription_free_trial_type'] = subscriptionFreeTrialType;
-    data['country_picker_status'] = countryPickerStatus;
-    data['firebase_otp_verification'] = firebaseOtpVerification;
     return data;
   }
 }
@@ -391,7 +365,6 @@ class BaseUrls {
   String? vehicleImageUrl;
   String? vehicleBrandImageUrl;
   String? gatewayImageUrl;
-  String? brandImageUrl;
 
   BaseUrls({
     this.itemImageUrl,
@@ -415,7 +388,6 @@ class BaseUrls {
     this.vehicleImageUrl,
     this.vehicleBrandImageUrl,
     this.gatewayImageUrl,
-    this.brandImageUrl,
   });
 
   BaseUrls.fromJson(Map<String, dynamic> json) {
@@ -440,7 +412,6 @@ class BaseUrls {
     vehicleImageUrl = json['vehicle_image_url'];
     vehicleBrandImageUrl = json['vehicle_brand_image_url'];
     gatewayImageUrl = json['gateway_image_url'];
-    brandImageUrl = json['brand_image_url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -466,7 +437,6 @@ class BaseUrls {
     data['vehicle_image_url'] = vehicleImageUrl;
     data['vehicle_brand_image_url'] = vehicleBrandImageUrl;
     data['gateway_image_url'] = gatewayImageUrl;
-    data['brand_image_url'] = brandImageUrl;
     return data;
   }
 }
@@ -705,6 +675,7 @@ class SocialLogin {
   }
 }
 
+
 class PaymentBody {
   String? getWay;
   String? getWayTitle;
@@ -727,6 +698,7 @@ class PaymentBody {
   }
 }
 
+
 class DigitalPaymentInfo {
   bool? digitalPayment;
   bool? pluginPaymentGateways;
@@ -745,25 +717,6 @@ class DigitalPaymentInfo {
     data['digital_payment'] = digitalPayment;
     data['plugin_payment_gateways'] = pluginPaymentGateways;
     data['default_payment_gateways'] = defaultPaymentGateways;
-    return data;
-  }
-}
-
-class BusinessPlan {
-  int? commission;
-  int? subscription;
-
-  BusinessPlan({this.commission, this.subscription});
-
-  BusinessPlan.fromJson(Map<String, dynamic> json) {
-    commission = json['commission'];
-    subscription = json['subscription'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['commission'] = commission;
-    data['subscription'] = subscription;
     return data;
   }
 }
