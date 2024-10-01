@@ -34,7 +34,7 @@ class CardSelectionWidget extends StatelessWidget {
               return Wrap(
                 spacing: 10,
                 children: snapshot.data!.map((brand) {
-                  bool isSelected = checkoutController.selectedCardBrand?.code == brand.code;
+                  bool isSelected = checkoutController.selectedCardBrand? == brand.code;
 
                   return GestureDetector(
                     onTap: () {
