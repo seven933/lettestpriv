@@ -485,7 +485,8 @@ class _ParcelRequestScreenState extends State<ParcelRequestScreen> {
 
                               CustomImage(
                                 height: 20, fit: BoxFit.contain,
-                                image: '${Get.find<SplashController>().configModel!.baseUrls!.gatewayImageUrl}/${Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWayImage!}',
+                                image: '${Get.find<SplashController>().configModel!.baseUrls!.gatewayImageUrl}/${Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWayImageFullUrl}',
+
                               ),
                               const SizedBox(width: Dimensions.paddingSizeSmall),
 
