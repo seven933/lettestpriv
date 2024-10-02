@@ -165,7 +165,31 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                             ),
                           ) : const SizedBox(),
 
-                          SizedBox(),
+                          const SizedBox(),
+                          Flexible( 
+                            child: PaymentButtonNew(
+                              icon: Images.cards,
+                              title: 'credit_card_on_delivery'.tr,
+                              isSelected: checkoutController.paymentMethodIndex == 3,
+                              onTap: () {
+                                checkoutController.setPaymentMethod(3);
+                              },
+                            ),
+                          ),
+
+                          const SizedBox(),
+                          Flexible(
+                            child: PaymentButtonNew(
+                              icon: Images.cards,
+                              title: 'debit_card_on_delivery'.tr,
+                              isSelected: checkoutController.paymentMethodIndex == 4,
+                              onTap: () {
+                                checkoutController.setPaymentMethod(4);
+                              },
+                            ),
+                          ),    
+
+                          const SizedBox(),
                           Flexible(
                             child: PaymentButtonNew(
                               icon: Images.pix,
