@@ -114,6 +114,39 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
 
             const SizedBox(height: Dimensions.paddingSizeLarge),
 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: toggleLabels.asMap().entries.map((entry) {
+                int index = entry.key;
+                String label = entry.value;
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedToggleIndex = index;
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    margin: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: selectedToggleIndex == index
+                          ? Theme.of(context).primaryColor // Cor de fundo quando selecionado
+                          : unselectedColor, // Cor de fundo quando não selecionado
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      label,
+                      style: TextStyle(
+                        color: selectedToggleIndex == index
+                            ? Colors.white // Cor do texto quando selecionado
+                            : Colors.black, // Cor do texto quando não selecionado
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            
           Flexible(
             child: SingleChildScrollView(
               child: Padding(
