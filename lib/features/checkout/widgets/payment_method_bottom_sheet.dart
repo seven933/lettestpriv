@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
@@ -14,6 +15,7 @@ import 'package:sixam_mart/common/widgets/custom_image.dart';
 import 'package:sixam_mart/common/widgets/custom_snackbar.dart';
 import 'package:sixam_mart/features/payment/widgets/offline_payment_button.dart';
 import 'package:sixam_mart/features/checkout/widgets/payment_button_new.dart';
+import 'dart:async';
 
 class PaymentMethodBottomSheet extends StatefulWidget {
   final bool isCashOnDeliveryActive;
@@ -30,10 +32,24 @@ class PaymentMethodBottomSheet extends StatefulWidget {
 }
 
 class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
+  
   bool canSelectWallet = true;
   bool notHideCod = true;
   bool notHideWallet = true;
   bool notHideDigital = true;
+  bool isDigitalPaymentSelected = false;
+  
+  List<String> toggleLabels = ['payment_on_delivery'.tr, 'digital_payment'.tr];
+  List<bool> isSelected = [true, false];
+  
+  int selectedToggleIndex = 0;
+  
+  Color selectedColor = Color(0xFF039D55);
+  Color unselectedColor = Color(0xFFBABFC4);
+  
+  double cashToChange = 0.0;
+  double cashOnDelivery = 0.0;
+  
   final JustTheController tooltipController = JustTheController();
 
   @override
@@ -77,29 +93,26 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
           ),
         ),
         padding: EdgeInsets.symmetric(horizontal: isDesktop ? Dimensions.paddingSizeSmall : Dimensions.paddingSizeLarge, vertical: Dimensions.paddingSizeLarge),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-
-          ResponsiveHelper.isDesktop(context) ? Align(
-            alignment: Alignment.topRight,
-            child: InkWell(
-              onTap: () => Get.back(),
-              child: Container(
-                height: 30, width: 30,
-                margin: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeExtraSmall),
-                decoration: BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(50)),
-                child: const Icon(Icons.clear),
-              ),
+        child: Column(mainAxisSize: MainAxisSize.min, 
+          children: [
+            
+              Align(
+                
+                alignment: Alignment.center,
+                child: Container(
+                  height: 4,
+                  width: 35,
+                  margin: const EdgeInsets.symmetric(
+                    vertical: Dimensions.paddingSizeExtraSmall,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).disabledColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
             ),
-          ) : Align(
-            alignment: Alignment.center,
-            child: Container(
-              height: 4, width: 35,
-              margin: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeExtraSmall),
-              decoration: BoxDecoration(color: Theme.of(context).disabledColor, borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
 
-          const SizedBox(height: Dimensions.paddingSizeLarge),
+            const SizedBox(height: Dimensions.paddingSizeLarge),
 
           Flexible(
             child: SingleChildScrollView(
