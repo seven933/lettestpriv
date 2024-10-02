@@ -165,6 +165,17 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                             ),
                           ) : const SizedBox(),
 
+                          SizedBox(),
+                          Flexible(
+                            child: PaymentButtonNew(
+                              icon: Images.pix,
+                              title: 'pix'.tr,
+                              isSelected: checkoutController.paymentMethodIndex == 5,
+                              onTap: () {
+                                checkoutController.setPaymentMethod(5);
+                              },
+                            ),
+                          ),
                         ]),
                         const SizedBox(height: Dimensions.paddingSizeLarge),
 
@@ -186,7 +197,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                               bool isSelected = checkoutController.paymentMethodIndex == 2 && Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWay! == checkoutController.digitalPaymentName;
                             return InkWell(
                               onTap: (){
-                                checkoutController.setPaymentMethod(2);
+                                checkoutController.setPaymentMethod(6);
                                 checkoutController.changeDigitalPaymentName(Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWay!);
                               },
                               child: Container(
