@@ -52,6 +52,85 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
   
   final JustTheController tooltipController = JustTheController();
 
+  void _handleCashOnDeliverySelection(CheckoutController checkoutController) async {
+    
+    checkoutController.setPaymentMethod(0);
+    _showCashOnDeliveryPopup(checkoutController);
+  
+  }
+
+  void _showCashOnDeliveryPopup(CheckoutController checkoutController) {
+    
+    TextEditingController amountController = TextEditingController();
+     Get.dialog(
+      AlertDialog(
+        title: Text('cash_on_delivery'.tr),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('enter_the_amount_to_pay_on_delivery'.tr),
+            TextField(
+              controller: amountController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+              decoration: InputDecoration(labelText: 'amount'.tr),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // Confirma o valor
+              String amountText = amountController.text;
+              if (amountText.isNotEmpty) {
+                try {
+                  // Remover espaços em branco
+                  amountText = amountText.trim();
+                  
+                  // Substituir vírgulas por pontos
+                  String rawAmount = amountText.replaceAll(',', '.');
+                  // Verificar se a entrada é válida antes de converter
+                  if (RegExp(r'^[0-9]*\.?[0-9]+$').hasMatch(rawAmount)) {
+                    double cashOnDelivery = double.parse(rawAmount);
+                    checkoutController.setAmountCashOnDelivery(cashOnDelivery);
+                  } else {
+                    print('Valor inválido');
+                  }
+                } catch (e) {
+                  print('Erro ao converter o valor para double: $e');
+                }
+              }
+              Get.back();
+            },
+            child: CustomButton(
+              isLoading: false,
+              buttonText: 'confirm'.tr,
+              onPressed: () {
+                String amountText = amountController.text;
+                if (amountText.isNotEmpty) {
+                  try {
+                    // Remover espaços em branco
+                    amountText = amountText.trim();
+                  
+                    // Substituir vírgulas por pontos
+                    String rawAmount = amountText.replaceAll(',', '.');
+                    // Verificar se a entrada é válida antes de converter
+                    if (RegExp(r'^[0-9]*\.?[0-9]+$').hasMatch(rawAmount)) {
+                      double cashOnDelivery = double.parse(rawAmount);
+                      checkoutController.setAmountCashOnDelivery(cashOnDelivery);
+                    } else {}
+                  } catch (e) {}
+                }
+                Get.back();
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+
+  }
+
   @override
   void initState() {
     super.initState();
@@ -146,7 +225,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                 );
               }).toList(),
             ),
-            
+
           Flexible(
             child: SingleChildScrollView(
               child: Padding(
@@ -181,9 +260,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                 icon: Images.codIcon,
                                 title: 'cash_on_delivery'.tr,
                                 isSelected: checkoutController.paymentMethodIndex == 0,
-                                onTap: () {
-                                  checkoutController.setPaymentMethod(0);
-                                },
+                                onTap: () => _handleCashOnDeliverySelection(checkoutController),
                               ),
                             ),
                           ) : const SizedBox(),
