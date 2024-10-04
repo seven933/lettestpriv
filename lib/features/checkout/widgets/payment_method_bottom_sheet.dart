@@ -156,6 +156,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
       }
     }
   }
+  
   @override
   Widget build(BuildContext context) {
     bool isLoggedIn = AuthHelper.isLoggedIn();
@@ -172,28 +173,28 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
             bottom: Radius.circular(ResponsiveHelper.isDesktop(context) ? Dimensions.radiusLarge : 0),
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: isDesktop ? Dimensions.paddingSizeSmall : Dimensions.paddingSizeLarge, vertical: Dimensions.paddingSizeLarge),
-        child: Column(mainAxisSize: MainAxisSize.min, 
+        padding: EdgeInsets.symmetric(
+          horizontal: isDesktop ? Dimensions.paddingSizeSmall : Dimensions.paddingSizeLarge,
+          vertical: Dimensions.paddingSizeLarge,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            
-              Align(
-                
-                alignment: Alignment.center,
-                child: Container(
-                  height: 4,
-                  width: 35,
-                  margin: const EdgeInsets.symmetric(
-                    vertical: Dimensions.paddingSizeExtraSmall,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).disabledColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                height: 4,
+                width: 35,
+                margin: const EdgeInsets.symmetric(
+                  vertical: Dimensions.paddingSizeExtraSmall,
                 ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).disabledColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
             ),
-
             const SizedBox(height: Dimensions.paddingSizeLarge),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: toggleLabels.asMap().entries.map((entry) {
@@ -210,16 +211,16 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                     margin: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       color: selectedToggleIndex == index
-                          ? Theme.of(context).primaryColor // Cor de fundo quando selecionado
-                          : unselectedColor, // Cor de fundo quando não selecionado
+                          ? Theme.of(context).primaryColor
+                          : unselectedColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
                       label,
                       style: TextStyle(
                         color: selectedToggleIndex == index
-                            ? Colors.white // Cor do texto quando selecionado
-                            : Colors.black, // Cor do texto quando não selecionado
+                            ? Colors.white
+                            : Colors.black,
                       ),
                     ),
                   ),
@@ -227,44 +228,87 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
               }).toList(),
             ),
             const SizedBox(height: Dimensions.paddingSizeLarge),
-
-            selectedToggleIndex == 1 ? Column(
-
-            ) : Column(
-
-              children: [
-
-                Flexible(
-
-                  child: 
-                    widget.storeId == null && widget.isWalletActive && notHideWallet && isLoggedIn ? Expanded(
-                    child: Padding(
-                    padding: EdgeInsets.only(left: widget.isCashOnDeliveryActive && notHideCod ? Dimensions.paddingSizeSmall : 0),
-                      child: PaymentButtonNew(
-                      icon: Images.partialWallet,
-                      title: 'pay_via_wallet'.tr,
-                      isSelected: checkoutController.paymentMethodIndex == 1,
-                      onTap: () {
-                        if(canSelectWallet) {
-                            checkoutController.setPaymentMethod(1);
-                        } else if(checkoutController.isPartialPay){
-                            showCustomSnackBar('you_can_not_user_wallet_in_partial_payment'.tr);
-                            Get.back();
-                        } else{
-                            showCustomSnackBar('your_wallet_have_not_sufficient_balance'.tr);
-                            Get.back();
-                        }
-                      },
-                    ),
-                  ),
-                  ) : const SizedBox(),
+            Flexible(
+              child: SingleChildScrollView(
+                child: GetBuilder<CheckoutController>(
+                  builder: (checkoutController) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: Dimensions.paddingSizeDefault),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'payment_method'.tr,
+                            style: robotoBold.copyWith(
+                              fontSize: Dimensions.fontSizeLarge,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: Dimensions.paddingSizeLarge),
+                        selectedToggleIndex == 1
+                            ? Column()
+                            : Column(
+                                children: [
+                                  Flexible(
+                                    child: widget.storeId == null &&
+                                            widget.isWalletActive &&
+                                            notHideWallet &&
+                                            isLoggedIn
+                                        ? Padding(
+                                            padding: EdgeInsets.only(
+                                                left: widget.isCashOnDeliveryActive &&
+                                                        notHideCod
+                                                    ? Dimensions.paddingSizeSmall
+                                                    : 0),
+                                            child: PaymentButtonNew(
+                                              icon: Images.partialWallet,
+                                              title: 'pay_via_wallet'.tr,
+                                              isSelected:
+                                                  checkoutController.paymentMethodIndex == 1,
+                                              onTap: () {
+                                                if (canSelectWallet) {
+                                                  checkoutController.setPaymentMethod(1);
+                                                } else if (checkoutController
+                                                    .isPartialPay) {
+                                                  showCustomSnackBar(
+                                                      'you_can_not_user_wallet_in_partial_payment'
+                                                          .tr);
+                                                  Get.back();
+                                                } else {
+                                                  showCustomSnackBar(
+                                                      'your_wallet_have_not_sufficient_balance'
+                                                          .tr);
+                                                  Get.back();
+                                                }
+                                              },
+                                            ),
+                                          )
+                                        : const SizedBox(),
+                                  ),
+                                ],
+                              ),
+                      ],
+                    );
+                  },
                 ),
-
-              ],
-
+              ),
             ),
+            SafeArea(
+              child: CustomButton(
+                buttonText: 'select'.tr,
+                onPressed: () => Get.back(),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-            // ------------
+}
+
+ // ------------
             /*
           Flexible(
             child: SingleChildScrollView(
@@ -420,16 +464,3 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
               ),
             ),
           ),*/
-
-          SafeArea(
-            child: CustomButton(
-              buttonText: 'select'.tr,
-              onPressed: () => Get.back(),
-            ),
-          ),
-
-        ]),
-      ),
-    );
-  }
-}
