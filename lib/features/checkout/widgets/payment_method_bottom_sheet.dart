@@ -156,7 +156,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
       }
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     bool isLoggedIn = AuthHelper.isLoggedIn();
@@ -247,10 +247,11 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                         ),
                         const SizedBox(height: Dimensions.paddingSizeLarge),
                         selectedToggleIndex == 1
-                            ? Column()
-                            : Column(
-                                children: [
-                                  Flexible(
+                            ? Column(
+
+                              // Pagamentos Digitais 
+                              children: [
+                                Flexible(
                                     child: widget.storeId == null &&
                                             widget.isWalletActive &&
                                             notHideWallet &&
@@ -285,9 +286,58 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                             ),
                                           )
                                         : const SizedBox(),
+
+
+                                ),
+                                
+
+                              ],
+                            )
+                            : Column(
+
+                                // Pagamentos na Entrega
+                                children: [
+
+                                  Flexible(
+                                    child: widget.isCashOnDeliveryActive && notHideCod ? Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: widget.storeId == null && widget.isWalletActive && notHideWallet && isLoggedIn ? Dimensions.paddingSizeSmall : 0),
+                                        child: PaymentButtonNew(
+                                          icon: Images.codIcon,
+                                          title: 'cash_on_delivery'.tr,
+                                          isSelected: checkoutController.paymentMethodIndex == 0,
+                                          onTap: () => _handleCashOnDeliverySelection(checkoutController),
+                                        ),
+                                      ),
+                                    ),
+                                  ) : const SizedBox(),
+
+                                  const SizedBox(),
+                                  
+                                  Flexible( 
+                                    child: PaymentButtonNew(
+                                      icon: Images.cards,
+                                      title: 'credit_card_on_delivery'.tr,
+                                      isSelected: checkoutController.paymentMethodIndex == 3,
+                                      onTap: () {
+                                        checkoutController.setPaymentMethod(3);
+                                      },
+                                    ),
                                   ),
+
+                                  const SizedBox(),
+                                  Flexible(
+                                    child: PaymentButtonNew(
+                                      icon: Images.cards,
+                                      title: 'debit_card_on_delivery'.tr,
+                                      isSelected: checkoutController.paymentMethodIndex == 4,
+                                      onTap: () {
+                                        checkoutController.setPaymentMethod(4);
+                                      },
+                                    ),
+                                  ),  
                                 ],
-                              ),
+                            ),
                       ],
                     );
                   },
@@ -310,6 +360,18 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
 
  // ------------
             /*
+
+            const SizedBox(),
+                          Flexible(
+                            child: PaymentButtonNew(
+                              icon: Images.pix,
+                              title: 'pix'.tr,
+                              isSelected: checkoutController.paymentMethodIndex == 5,
+                              onTap: () {
+                                checkoutController.setPaymentMethod(5);
+                              },
+                            ),
+                          ),
           Flexible(
             child: SingleChildScrollView(
               child: Padding(
@@ -338,54 +400,14 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                         ]) : const SizedBox(),
 
                         Row(children: [
-                          widget.isCashOnDeliveryActive && notHideCod ? Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(right: widget.storeId == null && widget.isWalletActive && notHideWallet && isLoggedIn ? Dimensions.paddingSizeSmall : 0),
-                              child: PaymentButtonNew(
-                                icon: Images.codIcon,
-                                title: 'cash_on_delivery'.tr,
-                                isSelected: checkoutController.paymentMethodIndex == 0,
-                                onTap: () => _handleCashOnDeliverySelection(checkoutController),
-                              ),
-                            ),
-                          ) : const SizedBox(),
+                          
                           // SizedBox(width: widget.storeId == null && widget.isWalletActive && notHideWallet && isLoggedIn ? 0 : Dimensions.paddingSizeLarge),
 
-                          const SizedBox(),
-                          Flexible( 
-                            child: PaymentButtonNew(
-                              icon: Images.cards,
-                              title: 'credit_card_on_delivery'.tr,
-                              isSelected: checkoutController.paymentMethodIndex == 3,
-                              onTap: () {
-                                checkoutController.setPaymentMethod(3);
-                              },
-                            ),
-                          ),
+                          
 
-                          const SizedBox(),
-                          Flexible(
-                            child: PaymentButtonNew(
-                              icon: Images.cards,
-                              title: 'debit_card_on_delivery'.tr,
-                              isSelected: checkoutController.paymentMethodIndex == 4,
-                              onTap: () {
-                                checkoutController.setPaymentMethod(4);
-                              },
-                            ),
-                          ),    
+                            
 
-                          const SizedBox(),
-                          Flexible(
-                            child: PaymentButtonNew(
-                              icon: Images.pix,
-                              title: 'pix'.tr,
-                              isSelected: checkoutController.paymentMethodIndex == 5,
-                              onTap: () {
-                                checkoutController.setPaymentMethod(5);
-                              },
-                            ),
-                          ),
+                          
                         ]),
                         const SizedBox(height: Dimensions.paddingSizeLarge),
 
