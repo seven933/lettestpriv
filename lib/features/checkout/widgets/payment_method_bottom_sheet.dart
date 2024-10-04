@@ -226,7 +226,46 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                 );
               }).toList(),
             ),
+            const SizedBox(height: Dimensions.paddingSizeLarge),
 
+            selectedToggleIndex == 1 ? Column(
+
+            ) : Column(
+
+              children: [
+
+                Flexible(
+
+                  child: 
+                    widget.storeId == null && widget.isWalletActive && notHideWallet && isLoggedIn ? Expanded(
+                    child: Padding(
+                    padding: EdgeInsets.only(left: widget.isCashOnDeliveryActive && notHideCod ? Dimensions.paddingSizeSmall : 0),
+                      child: PaymentButtonNew(
+                      icon: Images.partialWallet,
+                      title: 'pay_via_wallet'.tr,
+                      isSelected: checkoutController.paymentMethodIndex == 1,
+                      onTap: () {
+                        if(canSelectWallet) {
+                            checkoutController.setPaymentMethod(1);
+                        } else if(checkoutController.isPartialPay){
+                            showCustomSnackBar('you_can_not_user_wallet_in_partial_payment'.tr);
+                            Get.back();
+                        } else{
+                            showCustomSnackBar('your_wallet_have_not_sufficient_balance'.tr);
+                            Get.back();
+                        }
+                      },
+                    ),
+                  ),
+                  ) : const SizedBox(),
+                ),
+
+              ],
+
+            ),
+
+            // ------------
+            /*
           Flexible(
             child: SingleChildScrollView(
               child: Padding(
@@ -236,6 +275,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
                         const SizedBox(height: Dimensions.paddingSizeDefault),
 
                         Align(alignment: Alignment.center, child: Text('payment_method'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeLarge))),
@@ -266,28 +306,6 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                             ),
                           ) : const SizedBox(),
                           // SizedBox(width: widget.storeId == null && widget.isWalletActive && notHideWallet && isLoggedIn ? 0 : Dimensions.paddingSizeLarge),
-
-                          widget.storeId == null && widget.isWalletActive && notHideWallet && isLoggedIn ? Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: widget.isCashOnDeliveryActive && notHideCod ? Dimensions.paddingSizeSmall : 0),
-                              child: PaymentButtonNew(
-                                icon: Images.partialWallet,
-                                title: 'pay_via_wallet'.tr,
-                                isSelected: checkoutController.paymentMethodIndex == 1,
-                                onTap: () {
-                                  if(canSelectWallet) {
-                                    checkoutController.setPaymentMethod(1);
-                                  } else if(checkoutController.isPartialPay){
-                                    showCustomSnackBar('you_can_not_user_wallet_in_partial_payment'.tr);
-                                    Get.back();
-                                  } else{
-                                    showCustomSnackBar('your_wallet_have_not_sufficient_balance'.tr);
-                                    Get.back();
-                                  }
-                                },
-                              ),
-                            ),
-                          ) : const SizedBox(),
 
                           const SizedBox(),
                           Flexible( 
@@ -401,7 +419,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                 ),
               ),
             ),
-          ),
+          ),*/
 
           SafeArea(
             child: CustomButton(
