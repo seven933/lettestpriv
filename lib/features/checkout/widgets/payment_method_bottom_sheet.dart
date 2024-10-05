@@ -248,96 +248,78 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                         const SizedBox(height: Dimensions.paddingSizeLarge),
                         selectedToggleIndex == 1
                             ? Column(
-
-                              // Pagamentos Digitais 
-                              children: [
-                                Flexible(
-                                    child: widget.storeId == null &&
-                                            widget.isWalletActive &&
-                                            notHideWallet &&
-                                            isLoggedIn
-                                        ? Padding(
-                                            padding: EdgeInsets.only(
-                                                left: widget.isCashOnDeliveryActive &&
-                                                        notHideCod
-                                                    ? Dimensions.paddingSizeSmall
-                                                    : 0),
-                                            child: PaymentButtonNew(
-                                              icon: Images.partialWallet,
-                                              title: 'pay_via_wallet'.tr,
-                                              isSelected:
-                                                  checkoutController.paymentMethodIndex == 1,
-                                              onTap: () {
-                                                if (canSelectWallet) {
-                                                  checkoutController.setPaymentMethod(1);
-                                                } else if (checkoutController
-                                                    .isPartialPay) {
-                                                  showCustomSnackBar(
-                                                      'you_can_not_user_wallet_in_partial_payment'
-                                                          .tr);
-                                                  Get.back();
-                                                } else {
-                                                  showCustomSnackBar(
-                                                      'your_wallet_have_not_sufficient_balance'
-                                                          .tr);
-                                                  Get.back();
-                                                }
-                                              },
-                                            ),
-                                          )
-                                        : const SizedBox(),
-
-
-                                ),
-                                
-
-                              ],
-                            )
-                            : Column(
-
-                                // Pagamentos na Entrega
                                 children: [
-
-                                  Flexible(
-                                    child: widget.isCashOnDeliveryActive && notHideCod ? Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(right: widget.storeId == null && widget.isWalletActive && notHideWallet && isLoggedIn ? Dimensions.paddingSizeSmall : 0),
-                                        child: PaymentButtonNew(
-                                          icon: Images.codIcon,
-                                          title: 'cash_on_delivery'.tr,
-                                          isSelected: checkoutController.paymentMethodIndex == 0,
-                                          onTap: () => _handleCashOnDeliverySelection(checkoutController),
-                                        ),
-                                      ),
-                                    ),
-                                  ) : const SizedBox(),
-
-                                  const SizedBox(),
-                                  
-                                  Flexible( 
-                                    child: PaymentButtonNew(
-                                      icon: Images.cards,
-                                      title: 'credit_card_on_delivery'.tr,
-                                      isSelected: checkoutController.paymentMethodIndex == 3,
-                                      onTap: () {
-                                        checkoutController.setPaymentMethod(3);
-                                      },
-                                    ),
-                                  ),
-
-                                  const SizedBox(),
-                                  Flexible(
-                                    child: PaymentButtonNew(
-                                      icon: Images.cards,
-                                      title: 'debit_card_on_delivery'.tr,
-                                      isSelected: checkoutController.paymentMethodIndex == 4,
-                                      onTap: () {
-                                        checkoutController.setPaymentMethod(4);
-                                      },
-                                    ),
-                                  ),  
+                                  widget.storeId == null &&
+                                          widget.isWalletActive &&
+                                          notHideWallet &&
+                                          isLoggedIn
+                                      ? Padding(
+                                          padding: EdgeInsets.only(
+                                              left: widget.isCashOnDeliveryActive &&
+                                                      notHideCod
+                                                  ? Dimensions.paddingSizeSmall
+                                                  : 0),
+                                          child: PaymentButtonNew(
+                                            icon: Images.partialWallet,
+                                            title: 'pay_via_wallet'.tr,
+                                            isSelected: checkoutController.paymentMethodIndex == 1,
+                                            onTap: () {
+                                              if (canSelectWallet) {
+                                                checkoutController.setPaymentMethod(1);
+                                              } else if (checkoutController.isPartialPay) {
+                                                showCustomSnackBar(
+                                                    'you_can_not_use_wallet_in_partial_payment'.tr);
+                                                Get.back();
+                                              } else {
+                                                showCustomSnackBar(
+                                                    'your_wallet_have_not_sufficient_balance'.tr);
+                                                Get.back();
+                                              }
+                                            },
+                                          ),
+                                        )
+                                      : const SizedBox(),
                                 ],
-                            ),
+                              )
+                            : Column(
+                                children: [
+                                  widget.isCashOnDeliveryActive && notHideCod
+                                      ? Padding(
+                                          padding: EdgeInsets.only(
+                                            right: widget.storeId == null &&
+                                                    widget.isWalletActive &&
+                                                    notHideWallet &&
+                                                    isLoggedIn
+                                                ? Dimensions.paddingSizeSmall
+                                                : 0),
+                                          child: PaymentButtonNew(
+                                            icon: Images.codIcon,
+                                            title: 'cash_on_delivery'.tr,
+                                            isSelected: checkoutController.paymentMethodIndex == 0,
+                                            onTap: () => _handleCashOnDeliverySelection(checkoutController),
+                                          ),
+                                        )
+                                      : const SizedBox(),
+                                  const SizedBox(),
+                                  PaymentButtonNew(
+                                    icon: Images.cards,
+                                    title: 'credit_card_on_delivery'.tr,
+                                    isSelected: checkoutController.paymentMethodIndex == 3,
+                                    onTap: () {
+                                      checkoutController.setPaymentMethod(3);
+                                    },
+                                  ),
+                                  const SizedBox(),
+                                  PaymentButtonNew(
+                                    icon: Images.cards,
+                                    title: 'debit_card_on_delivery'.tr,
+                                    isSelected: checkoutController.paymentMethodIndex == 4,
+                                    onTap: () {
+                                      checkoutController.setPaymentMethod(4);
+                                    },
+                                  ),
+                                ],
+                              ),
                       ],
                     );
                   },
@@ -355,6 +337,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
       ),
     );
   }
+
 
 }
 
