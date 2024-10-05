@@ -279,6 +279,81 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                                           ),
                                         )
                                       : const SizedBox(),
+
+                                      const SizedBox(),
+
+                                      Flexible(
+                                        child: PaymentButtonNew(
+                                          icon: Images.pix,
+                                          title: 'pix'.tr,
+                                          isSelected: checkoutController.paymentMethodIndex == 5,
+                                          onTap: () {
+                                            checkoutController.setPaymentMethod(5);
+                                          },
+                                        ),
+                                      ),
+
+                                      const SizedBox(),
+
+                                      widget.storeId == null && widget.isDigitalPaymentActive && notHideDigital ? Row(children: [
+                                        Text('pay_via_online'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeDefault)),
+                                        Text(
+                                          'faster_and_secure_way_to_pay_bill'.tr,
+                                          style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).hintColor),
+                                        ),
+                                      ]) : const SizedBox(),
+                                      
+                                      SizedBox(height: widget.storeId == null && widget.isDigitalPaymentActive && notHideDigital ? Dimensions.paddingSizeLarge : 0),
+
+                                      widget.storeId == null && widget.isDigitalPaymentActive && notHideDigital ? ListView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          padding: EdgeInsets.zero,
+                                          itemCount: Get.find<SplashController>().configModel!.activePaymentMethodList!.length,
+                                          itemBuilder: (context, index) {
+                                            bool isSelected = checkoutController.paymentMethodIndex == 2 && Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWay! == checkoutController.digitalPaymentName;
+                                          return InkWell(
+                                            onTap: (){
+                                              checkoutController.setPaymentMethod(6);
+                                              checkoutController.changeDigitalPaymentName(Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWay!);
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : Colors.transparent,
+                                                  borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+                                                border: Border.all(color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).disabledColor, width: 0.5)
+                                              ),
+                                              padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeLarge),
+                                              margin: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
+                                              child: Row(children: [
+                                                Container(
+                                                  height: 20, width: 20,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle, color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).cardColor,
+                                                      border: Border.all(color: Theme.of(context).disabledColor)
+                                                  ),
+                                                  child: Icon(Icons.check, color: Theme.of(context).cardColor, size: 16),
+                                                ),
+                                                const SizedBox(width: Dimensions.paddingSizeDefault),
+
+                                                Expanded(
+                                                  child: Text(
+                                                    Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWayTitle!,
+                                                    style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault),
+                                                    overflow: TextOverflow.ellipsis, maxLines: 1,
+                                                  ),
+                                                ),
+
+                                                CustomImage(
+                                                  height: 20, fit: BoxFit.contain,
+                                                  image: Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWayImageFullUrl!,
+                                                ),
+                                                const SizedBox(width: Dimensions.paddingSizeSmall),
+                                              ]),
+                                            ),
+                                        );
+                                      }) : const SizedBox(),
+
                                 ],
                               )
                             : Column(
@@ -344,17 +419,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
  // ------------
             /*
 
-            const SizedBox(),
-                          Flexible(
-                            child: PaymentButtonNew(
-                              icon: Images.pix,
-                              title: 'pix'.tr,
-                              isSelected: checkoutController.paymentMethodIndex == 5,
-                              onTap: () {
-                                checkoutController.setPaymentMethod(5);
-                              },
-                            ),
-                          ),
+            
           Flexible(
             child: SingleChildScrollView(
               child: Padding(
@@ -394,64 +459,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                         ]),
                         const SizedBox(height: Dimensions.paddingSizeLarge),
 
-                        widget.storeId == null && widget.isDigitalPaymentActive && notHideDigital ? Row(children: [
-                          Text('pay_via_online'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeDefault)),
-                          Text(
-                            'faster_and_secure_way_to_pay_bill'.tr,
-                            style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).hintColor),
-                          ),
-                        ]) : const SizedBox(),
-                        SizedBox(height: widget.storeId == null && widget.isDigitalPaymentActive && notHideDigital ? Dimensions.paddingSizeLarge : 0),
-
-                        widget.storeId == null && widget.isDigitalPaymentActive && notHideDigital ? ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            padding: EdgeInsets.zero,
-                            itemCount: Get.find<SplashController>().configModel!.activePaymentMethodList!.length,
-                            itemBuilder: (context, index) {
-                              bool isSelected = checkoutController.paymentMethodIndex == 2 && Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWay! == checkoutController.digitalPaymentName;
-                            return InkWell(
-                              onTap: (){
-                                checkoutController.setPaymentMethod(6);
-                                checkoutController.changeDigitalPaymentName(Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWay!);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                                  border: Border.all(color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).disabledColor, width: 0.5)
-                                ),
-                                padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeLarge),
-                                margin: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
-                                child: Row(children: [
-                                  Container(
-                                    height: 20, width: 20,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle, color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).cardColor,
-                                        border: Border.all(color: Theme.of(context).disabledColor)
-                                    ),
-                                    child: Icon(Icons.check, color: Theme.of(context).cardColor, size: 16),
-                                  ),
-                                  const SizedBox(width: Dimensions.paddingSizeDefault),
-
-                                  Expanded(
-                                    child: Text(
-                                      Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWayTitle!,
-                                      style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault),
-                                      overflow: TextOverflow.ellipsis, maxLines: 1,
-                                    ),
-                                  ),
-
-                                  CustomImage(
-                                    height: 20, fit: BoxFit.contain,
-                                    image: Get.find<SplashController>().configModel!.activePaymentMethodList![index].getWayImageFullUrl!,
-                                  ),
-                                  const SizedBox(width: Dimensions.paddingSizeSmall),
-                                ]),
-                              ),
-                          );
-                            }) : const SizedBox(),
-
+                        
 
                         OfflinePaymentButton(
                           isSelected: checkoutController.paymentMethodIndex == 3,
